@@ -8,7 +8,7 @@ import { addblogSchema } from "../schemas/index";
 import { createPost } from "../services/authService";
 
 const initialState = {
-  name: "",
+  file_name: "",
   
 };
 
@@ -20,7 +20,7 @@ const Uploadfile = () => {
   const [postImage, setPostImage] = useState("");
   const [formData, setformData] = useState(initialState);
 
-  const { course_title, course_code, course_description } = formData;
+  const { file_name } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,10 +35,8 @@ const Uploadfile = () => {
   const newpost = async (e) => {
     e.preventDefault();
     const postData = new FormData();
-    postData.append("course_title", course_title);
-    postData.append("course_code", course_code);
-    postData.append("course_description", course_description);
-    postData.append("image", postImage);
+    postData.append("file_name", file_name);
+    postData.append("image", file);
 
     console.log(...postData);
     console.log("clicked");
