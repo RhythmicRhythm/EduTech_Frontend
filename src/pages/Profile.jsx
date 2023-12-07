@@ -124,14 +124,17 @@ const Profile = () => {
                       </div>
                       <div className="hidden peer-checked/tab-two:block p-4 w-full">
                         <div className="p-6">
-                          <a
-                            href={`/uploadfile/${post?._id}`}
-                            className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                          >
-                            Upload Course Material
-                          </a>
+                          {user.isAdmin && (
+                            <a
+                              href={`/uploadfile/${post?._id}`}
+                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                              Upload Course Material
+                            </a>
+                          )}
                         </div>
                         <div className="">
+                          
                           <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
                             <div className="flex gap-3">
                               <div className="">
@@ -150,42 +153,7 @@ const Profile = () => {
                               </button>
                             </div>
                           </div>
-                          <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
-                            <div className="flex gap-3">
-                              <div className="">
-                                <img src={art} alt="" />
-                              </div>
-                              <div className="mt-4">
-                                <h1 className="text-sm font-semibold text-gray-600">
-                                  History of computer -everything you need to
-                                  know .pdf
-                                </h1>
-                              </div>
-                            </div>{" "}
-                            <div className="mt-4">
-                              <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Download
-                              </button>
-                            </div>
-                          </div>
-                          <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
-                            <div className="flex gap-3">
-                              <div className="">
-                                <img src={art} alt="" />
-                              </div>
-                              <div className="mt-4">
-                                <h1 className="text-sm font-semibold text-gray-600">
-                                  History of computer -everything you need to
-                                  know .pdf
-                                </h1>
-                              </div>
-                            </div>{" "}
-                            <div className="mt-4">
-                              <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Download
-                              </button>
-                            </div>
-                          </div>
+                         
                         </div>
                       </div>
                     </section>
