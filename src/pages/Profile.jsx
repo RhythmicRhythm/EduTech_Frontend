@@ -5,7 +5,7 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import Card2 from "../partials/dashboard/Card2";
 import { Link } from "react-router-dom";
-import { getPostById } from "../services/authService";
+import { getPostById, getUser } from "../services/authService";
 
 const Profile = () => {
   const params = useParams();
