@@ -229,3 +229,23 @@ export const getPostById = async (postId) => {
     console.log(error);
   }
 };
+
+// Add Comment
+export const uploadFile = async (postData, postId) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/posts/addcomment/${postId}`,
+      postData
+    );
+   
+    toast.success("post added Successful...");
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    console.log(error.response.data);
+  }
+};
