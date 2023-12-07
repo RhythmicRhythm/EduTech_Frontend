@@ -46,7 +46,7 @@ const Profile = () => {
                         alt=""
                       />
                       <div className="mt-10 flex justify-between">
-                        <h1 className="text-sm text-gray-700 font-bold">
+                        <h1 className="text-xl text-gray-700 font-bold uppercase">
                           {post?.course_code} - {post?.course_title}{" "}
                         </h1>
                         <div className="flex gap-2">
@@ -67,7 +67,6 @@ const Profile = () => {
                           <p>Share</p>
                         </div>
                       </div>
-                     
                     </div>
 
                     <section className="flex flex-row flex-wrap">
@@ -109,13 +108,10 @@ const Profile = () => {
                         </div>
                         <div className="mt-8">
                           <h1 className="font-bold mb-2">Chapter Topics</h1>
-                       
                         </div>
                       </div>
                       <div className="hidden peer-checked/tab-two:block p-4 w-full">
-                       <Link  to={`/uploadfile/${post?._id}`}>
-                        Upload
-                       </Link>
+                        <Link to={`/uploadfile/${post?._id}`}>Upload</Link>
                         <div className="">
                           <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
                             <div className="flex gap-3">
