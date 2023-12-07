@@ -67,9 +67,7 @@ const Profile = () => {
                           <p>Share</p>
                         </div>
                       </div>
-                      <div className="">
-                        <h2>Chapter 1</h2>
-                      </div>
+                     
                     </div>
 
                     <section className="flex flex-row flex-wrap">
