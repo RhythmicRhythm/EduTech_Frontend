@@ -140,11 +140,11 @@ const NewCourse = () => {
                             onChange={handleImageChange}
                             className="w-full text-grey-500 text-sm
                     file:mr-5 file:rounded-full file:border-0
-                    file:bg-blue-50 file:py-2
+                    file:bg-green-50 file:py-2
                     file:px-6 file:text-sm
-                    file:font-medium file:text-blue-700
+                    file:font-medium file:text-green-700
                     hover:file:cursor-pointer hover:file:bg-amber-50
-                    hover:file:text-amber-700"
+                    hover:file:text-amber-400"
                             required
                           />
                         </div>
@@ -170,21 +170,9 @@ const NewCourse = () => {
                           ) : (
                             <button
                               type="submit"
-                              className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                              className="mt-5 tracking-wide font-semibold bg-green-600 text-gray-100 w-full py-4 rounded-lg hover:bg-green-800 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                             >
-                              <svg
-                                className="w-6 h-6 -ml-2"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                <circle cx="8.5" cy={7} r={4} />
-                                <path d="M20 8v6M23 11h-6" />
-                              </svg>
-                              <span className="ml-3">Add Blog Post</span>
+                              <span className="ml-3">Add New Course</span>
                             </button>
                           )}
                         </div>
