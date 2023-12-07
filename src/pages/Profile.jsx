@@ -134,26 +134,28 @@ const Profile = () => {
                           )}
                         </div>
                         <div className="">
-                          
-                          <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
-                            <div className="flex gap-3">
-                              <div className="">
-                                <img src={art} alt="" />
-                              </div>
+                          {post?.course_files.map((file, index) => (
+                            <div
+                              key={index}
+                              className="flex justify-between bg-white p-2 rounded-lg mb-2"
+                            >
+                              <div className="flex gap-3">
+                                <div className="">
+                                  <img src={art} alt="" />
+                                </div>
+                                <div className="mt-4">
+                                  <h1 className="text-sm font-semibold text-gray-600">
+                                  {file.name}
+                                  </h1>
+                                </div>
+                              </div>{" "}
                               <div className="mt-4">
-                                <h1 className="text-sm font-semibold text-gray-600">
-                                  History of computer -everything you need to
-                                  know .pdf
-                                </h1>
+                                <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                  Download
+                                </button>
                               </div>
-                            </div>{" "}
-                            <div className="mt-4">
-                              <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Download
-                              </button>
                             </div>
-                          </div>
-                         
+                          ))}
                         </div>
                       </div>
                     </section>
