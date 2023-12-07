@@ -145,14 +145,14 @@ const Profile = () => {
                                 </div>
                                 <div className="mt-4">
                                   <h1 className="text-sm font-semibold text-gray-600">
-                                  {file.name}
+                                    {file.name}
                                   </h1>
                                 </div>
                               </div>{" "}
                               <div className="mt-4">
-                                <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href={file.file} class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                   Download
-                                </button>
+                                </a>
                               </div>
                             </div>
                           ))}
