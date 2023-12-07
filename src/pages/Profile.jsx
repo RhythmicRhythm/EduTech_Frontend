@@ -24,6 +24,17 @@ const Profile = () => {
     }
     getPostData();
   }, [postId]);
+
+  useEffect(() => {
+    async function getUserData() {
+      const userdata = await getUser();
+
+      setUser(userdata);
+      console.log(userdata);
+    }
+    getUserData();
+  }, []);
+
   return (
     <>
       <div className="flex h-screen overflow-hidden">
