@@ -111,7 +111,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <div className="hidden peer-checked/tab-two:block p-4 w-full">
-                        <Link to={`/uploadfile/${post?._id}`}>Upload</Link>
+                       <div className=""></div>
                         <div className="">
                           <div className="flex justify-between bg-white p-2 rounded-lg mb-2">
                             <div className="flex gap-3">
