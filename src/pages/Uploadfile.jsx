@@ -8,9 +8,8 @@ import { addblogSchema } from "../schemas/index";
 import { createPost } from "../services/authService";
 
 const initialState = {
-  course_title: "",
-  course_code: "",
-  course_description: "",
+  name: "",
+  
 };
 
 const Uploadfile = () => {
