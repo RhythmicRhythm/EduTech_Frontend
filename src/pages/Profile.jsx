@@ -118,9 +118,7 @@ const Profile = () => {
                         <div className="">
                           <p className="text-sm">{post?.course_description}</p>
                         </div>
-                        <div className="mt-8">
-                          <h1 className="font-bold mb-2">Chapter Topics</h1>
-                        </div>
+                      
                       </div>
                       <div className="hidden peer-checked/tab-two:block p-4 w-full">
                         <div className="p-6">
@@ -150,7 +148,10 @@ const Profile = () => {
                                 </div>
                               </div>{" "}
                               <div className="mt-4">
-                                <a href={file.file} class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a
+                                  href={file.file}
+                                  class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >
                                   Download
                                 </a>
                               </div>
