@@ -13,6 +13,7 @@ const Profile = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [post, setPost] = useState(null);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     async function getPostData() {
