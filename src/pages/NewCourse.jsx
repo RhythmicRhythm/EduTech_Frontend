@@ -91,7 +91,7 @@ const NewCourse = () => {
                               id="course_title"
                               name="course_title"
                               className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
-                           text-sm focus:outline-none border-gray-200 focus:border-gray-200 focus:bg-white `}
+                           text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
                               required
                             />
                           </div>
@@ -108,7 +108,7 @@ const NewCourse = () => {
                             id="course_code"
                             name="course_code"
                             className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
-                           text-sm focus:outline-none border-gray-200 focus:border-gray-200 focus:bg-white `}
+                           text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
                             required
                           />
                         </div>
@@ -124,7 +124,7 @@ const NewCourse = () => {
                             name="course_description"
                             id="course_description"
                             className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
-                        text-sm focus:outline-none border-gray-200 focus:border-gray-200 focus:bg-white `}
+                        text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
                             required
                           />
                         </div>
