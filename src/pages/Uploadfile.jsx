@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
-import { useFormik } from "formik";
-import { addblogSchema } from "../schemas/index";
-import { createPost, uploadFile } from "../services/authService";
+import toast from "react-hot-toast";
+import {  uploadFile } from "../services/authService";
 
 const initialState = {
   file_name: "",
@@ -26,7 +24,7 @@ const Uploadfile = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
-    // setIsDescEmpty(value.trim() === "");
+    
   };
 
   const handleImageChange = (e) => {
