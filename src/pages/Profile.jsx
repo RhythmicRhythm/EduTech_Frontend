@@ -142,7 +142,7 @@ const Profile = () => {
                                 </div>
                                 <div className="mt-4">
                                   <h1 className="text-sm font-semibold text-gray-600">
-                                    {file.name}
+                                    {file.file_name}
                                   </h1>
                                 </div>
                               </div>{" "}

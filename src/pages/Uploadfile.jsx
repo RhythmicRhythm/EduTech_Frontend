@@ -9,7 +9,6 @@ import { createPost, uploadFile } from "../services/authService";
 
 const initialState = {
   file_name: "",
-  
 };
 
 const Uploadfile = () => {
