@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import art from "../../images/Artwork.png";
-import { getUser } from "../../services/authService";
+import { getCourses, getUser } from "../../services/authService";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -20,9 +20,9 @@ function DashboardCard07() {
 
   useEffect(() => {
     async function getCoursesData() {
-      const coursedata = await axios.get(`http://localhost:5000/posts/`);
+      const coursedata = await getCourses();
 
-      setCourses(coursedata.data);
+      setCourses(coursedata);
       console.log(coursedata);
     }
     getCoursesData();
@@ -82,45 +82,46 @@ function DashboardCard07() {
           <h1 className="text-2xl text-gray-700 font-bold">Semester Course</h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {courses.map((item) => (
-            <Link
-              key={item._id}
-              to={`/courses/${item._id}`}
-              className="flex justify-between bg-white shadow p-6 rounded-lg"
-            >
-              <div className="flex gap-3">
-                <div className="">
-                  <img
-                    src={item.image}
-                    className="w-12 h-12 rounded-lg"
-                    alt=""
-                  />
+          {courses &&
+            courses.map((item) => (
+              <Link
+                key={item._id}
+                to={`/courses/${item._id}`}
+                className="flex justify-between bg-white shadow p-6 rounded-lg"
+              >
+                <div className="flex gap-3">
+                  <div className="">
+                    <img
+                      src={item.image}
+                      className="w-12 h-12 rounded-lg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="mt-2">
+                    <h1 className="text-sm font-semibold text-gray-700">
+                      {item.course_code}
+                    </h1>
+                    <p className="text-sm">{item.course_title}</p>
+                  </div>
+                </div>{" "}
+                <div className="mt-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
                 </div>
-                <div className="mt-2">
-                  <h1 className="text-sm font-semibold text-gray-700">
-                    {item.course_code}
-                  </h1>
-                  <p className="text-sm">{item.course_title}</p>
-                </div>
-              </div>{" "}
-              <div className="mt-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
         </div>
       </div>
     </div>

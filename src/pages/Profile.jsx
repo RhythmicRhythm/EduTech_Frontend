@@ -6,8 +6,10 @@ import Header from "../partials/Header";
 import Card2 from "../partials/dashboard/Card2";
 import { Link } from "react-router-dom";
 import { getPostById, getUser } from "../services/authService";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Profile = () => {
+  useRedirectLoggedOutUser("/signin");
   const params = useParams();
   const postId = params.id;
 

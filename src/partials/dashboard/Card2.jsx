@@ -12,7 +12,7 @@ const Card2 = () => {
 
   useEffect(() => {
     async function getCoursesData() {
-      const data = await axios.get(`http://localhost:5000/posts/`);
+      const data = await getCourses();
 
       setCourses(data.data);
       console.log(data);
