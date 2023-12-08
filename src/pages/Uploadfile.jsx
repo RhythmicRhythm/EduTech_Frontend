@@ -13,6 +13,8 @@ const initialState = {
 };
 
 const Uploadfile = () => {
+  const params = useParams();
+  const postId = params.id;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 

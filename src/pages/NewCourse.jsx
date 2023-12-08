@@ -12,8 +12,7 @@ const initialState = {
 };
 
 const NewCourse = () => {
-  const params = useParams();
-  const postId = params.id;
+  
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
