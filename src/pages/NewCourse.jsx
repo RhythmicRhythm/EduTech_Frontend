@@ -48,7 +48,7 @@ const NewCourse = () => {
 
     try {
       setIsLoading(true);
-      const data = await createPost(postData, postId);
+      const data = await createPost(postData);
 
       if (data) {
         console.log(data);

@@ -47,7 +47,7 @@ const Uploadfile = () => {
 
     try {
       setIsLoading(true);
-      const data = await uploadFile(postData);
+      const data = await uploadFile(postData, postId);
 
       if (data) {
         console.log(data);
