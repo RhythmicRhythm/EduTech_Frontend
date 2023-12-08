@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { addblogSchema } from "../schemas/index";
-import { createPost } from "../services/authService";
+import { createPost, uploadFile } from "../services/authService";
 
 const initialState = {
   file_name: "",
@@ -36,7 +36,7 @@ const Uploadfile = () => {
     e.preventDefault();
     const postData = new FormData();
     postData.append("file_name", file_name);
-    postData.append("image", file);
+    postData.append("file", postImage);
 
     console.log(...postData);
     console.log("clicked");
@@ -45,7 +45,7 @@ const Uploadfile = () => {
 
     try {
       setIsLoading(true);
-      const data = await createPost(postData);
+      const data = await uploadFile(postData);
 
       if (data) {
         console.log(data);
@@ -83,12 +83,12 @@ const Uploadfile = () => {
                               File Name
                             </label>
                             <input
-                              placeholder="Course Title"
-                              value={course_title}
+                              placeholder="File Name"
+                              value={file_name}
                               onChange={handleInputChange}
                               type="text"
-                              id="course_title"
-                              name="course_title"
+                              id="file_name"
+                              name="file_name"
                               className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
                            text-sm focus:outline-none border-gray-200 focus:border-gray-200 focus:bg-white `}
                               required
@@ -101,9 +101,9 @@ const Uploadfile = () => {
                             Select file to Upload
                           </label>
                           <input
-                            name="image"
+                            name="file"
                             type="file"
-                            id="image"
+                            id="file"
                             onChange={handleImageChange}
                             className="w-full text-grey-500 text-sm
                     file:mr-5 file:rounded-full file:border-0

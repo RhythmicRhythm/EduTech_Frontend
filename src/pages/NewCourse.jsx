@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,  useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { createPost } from "../services/authService";
 
