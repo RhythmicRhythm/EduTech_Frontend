@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
-import { useNavigate,  useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { createPost } from "../services/authService";
 
@@ -12,6 +12,9 @@ const initialState = {
 };
 
 const NewCourse = () => {
+  const params = useParams();
+  const postId = params.id;
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -46,7 +49,7 @@ const NewCourse = () => {
 
     try {
       setIsLoading(true);
-      const data = await createPost(postData);
+      const data = await createPost(postData, postId);
 
       if (data) {
         console.log(data);
