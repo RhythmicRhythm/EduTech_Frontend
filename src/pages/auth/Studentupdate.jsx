@@ -109,53 +109,58 @@ const Studentupdate = () => {
                     <div className="md:flex flex-row md:space-x-4 w-full text-xs">
                       <div className="mb-3 space-y-2 w-full text-xs">
                         <label className="font-semibold text-gray-600 py-2">
-                          Course Title
+                          Semester
                         </label>
                         <input
-                          placeholder="Course Title"
+                          placeholder="5th year - 2nd semester"
+                          value={semester}
+                          onChange={handleInputChange}
+                          type="text"
+                          id="semester"
+                          name="semester"
+                          className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
+                       text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
+                          required
+                        />
+                      </div>
+                      
+                    </div>
+
+                    <div className="mb-3 space-y-2 w-full text-xs">
+                        <label className="font-semibold text-gray-600 py-2">
+                          Department
+                        </label>
+                        <input
+                          placeholder="Department"
                           value={course_title}
                           onChange={handleInputChange}
                           type="text"
                           id="course_title"
                           name="course_title"
-                          className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
+                          className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
                        text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
                           required
                         />
                       </div>
-                    </div>
-                    <div className="mb-3 space-y-2 w-full text-xs">
-                      <label className="font-semibold text-gray-600 py-2">
-                        Course Code
-                      </label>
-                      <input
-                        placeholder="Course Title"
-                        value={course_code}
-                        onChange={handleInputChange}
-                        type="text"
-                        id="course_code"
-                        name="course_code"
-                        className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
-                       text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
-                        required
-                      />
-                    </div>
-                    <div className="flex-auto w-full mb-1 text-xs space-y-2">
-                      <label className="font-semibold text-gray-600 py-2">
-                        Course Description
-                      </label>
-                      <textarea
-                        value={course_description}
-                        onChange={handleInputChange}
-                        placeholder="Enter Post Content"
-                        type="text"
-                        name="course_description"
-                        id="course_description"
-                        className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
-                    text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
-                        required
-                      />
-                    </div>
+
+                      <div className="mb-3 space-y-2 w-full text-xs">
+                        <label className="font-semibold text-gray-600 py-2">
+                          Date Of Birth
+                        </label>
+                        <input
+                          placeholder="Course Title"
+                          value={course_title}
+                          onChange={handleInputChange}
+                          type="date"
+                          id="course_title"
+                          name="course_title"
+                          className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
+                       text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
+                          required
+                        />
+                      </div>
+                 
+             
 
                     <div className="flex-auto w-full mb-1 text-xs space-y-2">
                       <label className="font-semibold text-gray-600 py-2">
