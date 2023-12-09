@@ -132,11 +132,11 @@ const Studentupdate = () => {
                         </label>
                         <input
                           placeholder="Department"
-                          value={course_title}
+                          value={department}
                           onChange={handleInputChange}
                           type="text"
-                          id="course_title"
-                          name="course_title"
+                          id="department"
+                          name="department"
                           className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
                        text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
                           required
