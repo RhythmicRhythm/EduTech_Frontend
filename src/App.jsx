@@ -22,6 +22,8 @@ import Signin from "./pages/auth/Signin";
 import Signup from "./pages/auth/SIgnup";
 import Forgotpassword from "./pages/auth/Forgotpassword";
 import Resetpassword from "./pages/auth/Resetpassword";
+import Studentupdate from "./pages/auth/Studentupdate";
+
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -55,6 +57,7 @@ function App() {
         {/* AUTH ROUTES */}
         <Route exact path="/signin" element={<Signin />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/studentupdate" element={<Studentupdate />} />
         <Route exact path="/forgotpassword" element={<Forgotpassword />} />
         <Route exact path="/resetpassword" element={<Resetpassword />} />
         <Route exact path="/verifycode" element={<Verifycode />} />
