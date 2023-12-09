@@ -105,6 +105,15 @@ const Studentupdate = () => {
               </div>
             ) : (
                 <form onSubmit={newpost}>
+                     <div className="">
+                  <p className="mt-3 text-xs text-left text-gray-600 dark:text-gray-200">
+                    Welcome to Ofspace Academy
+                  </p>
+                  <p className="font-bold text-2xl text-gray-800">
+                    {" "}
+                    Finishing Up
+                  </p>
+                </div>
                 <div className="mt-5">
                   <div className="form">
                     <div className="md:flex flex-row md:space-x-4 w-full text-xs">
