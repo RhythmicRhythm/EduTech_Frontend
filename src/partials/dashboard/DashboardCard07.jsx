@@ -45,11 +45,11 @@ function DashboardCard07() {
             <p className="text-xs text-gray-500">500 LEVEL</p>
           </div>
         </div>
-        <div className="">
+        {/* <div className="">
           <button class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Upload Image
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="mt-12">
         <h1 className="text-lg text-gray-600 font-bold">
