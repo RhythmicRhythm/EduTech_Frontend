@@ -40,12 +40,12 @@ const Signup = () => {
       if (data) {
         if (data.isAdmin) {
           // Redirect to a specific page for admin
-          navigate("/dashboard/admin");
+          navigate("/staffupdate");
         } else {
           // Redirect to a different page for non-admin users
-          navigate("/dashboard/home");
+          navigate("/studentupdate");
         }
-        navigate("/dashboard/home");
+       
         dispatch(SET_LOGIN(true));
       } else {
         // Handle unsuccessful login, maybe show an error message
