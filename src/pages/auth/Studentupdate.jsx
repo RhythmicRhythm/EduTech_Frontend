@@ -174,7 +174,7 @@ const Studentupdate = () => {
 
                     <div className="flex-auto w-full mb-1 text-xs space-y-2">
                       <label className="font-semibold text-gray-600 py-2">
-                        Select an Image
+                        Select a Profile Picture
                       </label>
                       <input
                         name="image"
