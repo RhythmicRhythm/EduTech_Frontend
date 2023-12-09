@@ -36,7 +36,7 @@ function DashboardCard07() {
       <div className="flex justify-between">
         <div className="flex gap-3">
           <div className="">
-            <img className={user?.photo} alt="" />
+            <img src={user?.photo} className="w-14 h-14 rounded-lg" alt="" />
           </div>
           <div className="">
             <h1 className="text-xl text-gray-700 font-bold">
