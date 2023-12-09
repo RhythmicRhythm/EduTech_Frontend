@@ -231,7 +231,9 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="login-half relative hidden w-1/2 items-center bg-red text-white lg:flex"></div>
+        <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
+        <img src={auth1} alt="" />
+        </div>
       </section>
     </>
   );
