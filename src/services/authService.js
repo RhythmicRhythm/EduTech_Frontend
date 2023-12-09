@@ -64,6 +64,24 @@ export const Register = async (userData) => {
   }
 };
 
+
+// Add Course
+export const updateUser = async (postData) => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/users/`, postData);
+    if (response.statusText === "OK") {
+      toast.success("post added Successful...");
+    }
+    toast.success("post added Successful...");
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    console.log(error.response.data);
+  }
+};
 // Forgot Password 
 export const forgotPassword = async (userData) => {
   try {
