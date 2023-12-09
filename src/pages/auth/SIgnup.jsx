@@ -203,10 +203,10 @@ const Signup = () => {
                     }`}
                     name="role"
                     id="role"
-                   
                     onChange={handleChange}
                   >
-                    <option   value="false">Student</option>
+                    <option value="">---select----</option>
+                    <option value="false">Student</option>
                     <option value="true">Lecturer</option>
                   </select>
 
@@ -235,7 +235,7 @@ const Signup = () => {
         </div>
 
         <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
-        <img src={auth1} alt="" />
+          <img src={auth1} alt="" />
         </div>
       </section>
     </>
