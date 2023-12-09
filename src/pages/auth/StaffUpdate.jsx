@@ -58,7 +58,7 @@ const Staffupdate = () => {
       if (data) {
         console.log(data);
         toast.success("Post Added Sucessfully");
-        
+        navigate("/dashboard/home");
         setIsLoading(false);
       } else {
         console.log("error");

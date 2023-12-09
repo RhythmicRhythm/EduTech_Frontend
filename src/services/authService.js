@@ -68,7 +68,7 @@ export const Register = async (userData) => {
 // Add Course
 export const updateUser = async (postData) => {
   try {
-    const response = await axios.post(`${BACKEND_URL}/users/`, postData);
+    const response = await axios.put(`${BACKEND_URL}/users/updateuser`, postData);
     if (response.statusText === "OK") {
       toast.success("post added Successful...");
     }
