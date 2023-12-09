@@ -57,7 +57,7 @@ const Staffupdate = () => {
 
       if (data) {
         console.log(data);
-       
+
         navigate("/dashboard/home");
         setIsLoading(false);
       } else {

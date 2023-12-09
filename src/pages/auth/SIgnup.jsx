@@ -45,7 +45,7 @@ const Signup = () => {
           // Redirect to a different page for non-admin users
           navigate("/studentupdate");
         }
-       
+
         dispatch(SET_LOGIN(true));
       } else {
         // Handle unsuccessful login, maybe show an error message
