@@ -148,12 +148,12 @@ const Studentupdate = () => {
                           Date Of Birth
                         </label>
                         <input
-                          placeholder="Course Title"
-                          value={course_title}
+                          placeholder="Date Of Birth"
+                          value={dob}
                           onChange={handleInputChange}
                           type="date"
-                          id="course_title"
-                          name="course_title"
+                          id="dob"
+                          name="dob"
                           className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
                        text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
                           required
