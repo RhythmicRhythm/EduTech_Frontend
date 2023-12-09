@@ -34,7 +34,7 @@ const Signup = () => {
 
     try {
       setIsLoading(true);
-      // const data = await Register(userData);
+      const data = await Register(userData);
       console.log(data);
       // Assuming your Login function returns some data indicating success
       if (data) {
