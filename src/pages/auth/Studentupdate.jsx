@@ -41,9 +41,9 @@ const Studentupdate = () => {
   const newpost = async (e) => {
     e.preventDefault();
     const postData = new FormData();
-    postData.append("course_title", course_title);
-    postData.append("course_code", course_code);
-    postData.append("course_description", course_description);
+    postData.append("semester", semester);
+    postData.append("department", department);
+    postData.append("dob", dob);
     postData.append("image", postImage);
 
     console.log(...postData);
