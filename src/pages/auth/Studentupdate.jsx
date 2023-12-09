@@ -53,12 +53,12 @@ const Studentupdate = () => {
 
     try {
       setIsLoading(true);
-      const data = await createPost(postData);
+      const data = await updateUser(postData);
 
       if (data) {
         console.log(data);
-        toast.success("Post Added Sucessfully");
-        navigate("/courses");
+
+        navigate("/dashboard/home");
         setIsLoading(false);
       } else {
         console.log("error");
