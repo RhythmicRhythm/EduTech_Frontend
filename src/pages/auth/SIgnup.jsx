@@ -6,6 +6,7 @@ import { SET_LOGIN } from "../../redux/Slices/authSlice";
 import { Register } from "../../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../images/auth.png";
+import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
 import toast, { Toaster } from "react-hot-toast";
@@ -230,13 +231,7 @@ const Signup = () => {
           </div>
         </div>
 
-        <div
-          style={{
-            backgroundImage: `url(${auth})`,
-            backgroundSize: "contain",
-          }}
-          className="login-half relative hidden w-1/2 items-center bg-red text-white lg:flex"
-        ></div>
+        <div className="login-half relative hidden w-1/2 items-center bg-red text-white lg:flex"></div>
       </section>
     </>
   );

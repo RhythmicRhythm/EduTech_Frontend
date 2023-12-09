@@ -14,7 +14,7 @@ const Card2 = () => {
     async function getCoursesData() {
       const data = await getCourses();
 
-      setCourses(data.data);
+      setCourses(data);
       console.log(data);
     }
     getCoursesData();

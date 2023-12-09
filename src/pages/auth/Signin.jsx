@@ -4,6 +4,7 @@ import { signinSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_LOGIN, SET_ADMIN } from "../../redux/Slices/authSlice";
 import auth from "../../images/auth.png";
+import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
 import { Link, useNavigate } from "react-router-dom";
@@ -189,13 +190,9 @@ const Signin = () => {
           </div>
         </div>
 
-        <div
-          style={{
-            backgroundImage: `url(${auth})`,
-            backgroundSize: "contain",
-          }}
-          className="login-half relative hidden w-1/2 items-center bg-red text-white lg:flex"
-        ></div>
+        <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
+            <img src={auth1} alt="" />
+        </div>
       </section>
     </>
   );
