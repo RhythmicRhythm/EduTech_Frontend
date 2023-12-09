@@ -47,7 +47,7 @@ function DashboardCard07() {
             ) : (
               // Render content for student account
               <h1 className="text-xl text-gray-700 font-bold mb-2">
-                {user?.fullname} {user?.fullname}
+                {user?.fullname} {user?.title}
               </h1>
             )}
 
@@ -73,15 +73,15 @@ function DashboardCard07() {
             </h2>
           </div>
           <div className="px-4 text-gray-500 border-r border-gray-400">
-            <p className="text-xs ">Batch/Department</p>
+            <p className="text-xs ">Department</p>
             <h2 className="text-xs font-bold text-gray-600 mr-4">
-              2010-2011: Computer Engineering
+            {user?.department}
             </h2>
           </div>
           <div className="px-4 text-gray-500 border-r">
-            <p className="text-xs ">Batch/Department</p>
+            <p className="text-xs ">Date of Birth</p>
             <h2 className="text-xs font-bold text-gray-600 mr-4">
-              2010-2011: Computer Engineering
+            {user?.dob}
             </h2>
           </div>
         </div>
