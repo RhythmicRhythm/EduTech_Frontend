@@ -25,7 +25,6 @@ import Resetpassword from "./pages/auth/Resetpassword";
 import Studentupdate from "./pages/auth/Studentupdate";
 import Staffupdate from "./pages/auth/StaffUpdate";
 
-
 import { useDispatch, useSelector } from "react-redux";
 
 import { getLoginStatus } from "./services/authService";

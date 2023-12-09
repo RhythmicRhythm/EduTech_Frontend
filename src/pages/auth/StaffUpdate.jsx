@@ -12,7 +12,7 @@ import { Login } from "../../services/authService";
 import toast, { Toaster } from "react-hot-toast";
 
 const initialState = {
-  semester: "",
+  title: "",
   department: "",
   dob: "",
 };
@@ -25,7 +25,7 @@ const Staffupdate = () => {
   const [postImage, setPostImage] = useState("");
   const [formData, setformData] = useState(initialState);
 
-  const { semester, department, dob } = formData;
+  const { title, department, dob } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,7 @@ const Staffupdate = () => {
   const newpost = async (e) => {
     e.preventDefault();
     const postData = new FormData();
-    postData.append("semester", semester);
+    postData.append("title", title);
     postData.append("department", department);
     postData.append("dob", dob);
     postData.append("image", postImage);
@@ -115,15 +115,15 @@ const Staffupdate = () => {
                     <div className="md:flex flex-row md:space-x-4 w-full text-xs">
                       <div className="mb-3 space-y-2 w-full text-xs">
                         <label className="font-semibold text-gray-600 py-2">
-                          Semester
+                          Title
                         </label>
                         <input
-                          placeholder="5th year - 2nd semester"
-                          value={semester}
+                          placeholder="E.g Dr, Engr"
+                          value={title}
                           onChange={handleInputChange}
                           type="text"
-                          id="semester"
-                          name="semester"
+                          id="title"
+                          name="title"
                           className={`w-full px-8 py-4 rounded-lg mb-2 font-medium  border-2 placeholder-gray-500
                        text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
                           required
