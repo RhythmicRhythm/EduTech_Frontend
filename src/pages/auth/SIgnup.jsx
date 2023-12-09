@@ -27,13 +27,14 @@ const Signup = () => {
       fullname: values.name,
       email: values.email,
       password: values.password,
+      isAdmin: values.role,
     };
 
     console.log(userData);
 
     try {
       setIsLoading(true);
-      const data = await Register(userData);
+      // const data = await Register(userData);
       console.log(data);
       // Assuming your Login function returns some data indicating success
       if (data) {
@@ -200,11 +201,13 @@ const Signup = () => {
                         ? "focus:border-red-300 focus:bg-white "
                         : "focus:border-gray-200 focus:bg-white "
                     }`}
-                    name=""
-                    id=""
+                    name="role"
+                    id="role"
+                   
+                    onChange={handleChange}
                   >
-                    <option value="Student">Student</option>
-                    <option value="Lecturer">Lecturer</option>
+                    <option   value="false">Student</option>
+                    <option value="true">Lecturer</option>
                   </select>
 
                   {errors.role && touched.role && (
