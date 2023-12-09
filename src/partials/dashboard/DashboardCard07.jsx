@@ -80,7 +80,7 @@ function DashboardCard07() {
             <p className="text-xs ">Department</p>
             <h2 className="text-xs font-bold text-gray-600 mr-4">
               {user?.department}
-            </h2>
+            </h2>git
           </div>
           <div className="px-4 text-gray-500 border-r">
             <p className="text-xs ">Date of Birth</p>
