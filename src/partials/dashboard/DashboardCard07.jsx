@@ -66,22 +66,26 @@ function DashboardCard07() {
           Accademic Information
         </h1>
         <div className="flex items-center pt-8 ">
-          <div className=" text-gray-500 border-r border-gray-400">
-            <p className="text-xs ">semester</p>
-            <h2 className="text-xs font-bold text-gray-800 mr-4">
-              5th Year - 2nd Semester
-            </h2>
-          </div>
+          {user?.isAdmin ? null : ( // If isAdmin is true, do not display anything
+            // If isAdmin is false, display the semester information
+            <div className=" text-gray-500 border-r border-gray-400">
+              <p className="text-xs ">semester</p>
+              <h2 className="text-xs font-bold text-gray-800 mr-4">
+              {user?.semester}
+              </h2>
+            </div>
+          )}
+
           <div className="px-4 text-gray-500 border-r border-gray-400">
             <p className="text-xs ">Department</p>
             <h2 className="text-xs font-bold text-gray-600 mr-4">
-            {user?.department}
+              {user?.department}
             </h2>
           </div>
           <div className="px-4 text-gray-500 border-r">
             <p className="text-xs ">Date of Birth</p>
             <h2 className="text-xs font-bold text-gray-600 mr-4">
-            {user?.dob}
+              {user?.dob}
             </h2>
           </div>
         </div>
