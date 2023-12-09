@@ -17,7 +17,7 @@ const initialState = {
   dob: "",
 };
 
-const Studentupdate = () => {
+const Staffupdate = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -229,4 +229,4 @@ const Studentupdate = () => {
   );
 };
 
-export default Studentupdate;
+export default Staffupdate;
