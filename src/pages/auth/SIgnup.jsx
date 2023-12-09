@@ -38,6 +38,13 @@ const Signup = () => {
       console.log(data);
       // Assuming your Login function returns some data indicating success
       if (data) {
+        if (data.isAdmin) {
+          // Redirect to a specific page for admin
+          navigate("/dashboard/admin");
+        } else {
+          // Redirect to a different page for non-admin users
+          navigate("/dashboard/home");
+        }
         navigate("/dashboard/home");
         dispatch(SET_LOGIN(true));
       } else {
