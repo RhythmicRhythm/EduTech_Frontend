@@ -11,61 +11,64 @@ import { Link, useNavigate } from "react-router-dom";
 import { Login } from "../../services/authService";
 import toast, { Toaster } from "react-hot-toast";
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-  console.log(actions);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
-};
+const initialState = {
+    course_title: "",
+    course_code: "",
+    course_description: "",
+  };
 
 const Studentupdate = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSubmit = async (e) => {
-    const userData = {
-      email: values.email,
-      password: values.password,
-    };
 
-    console.log(userData);
+  const [postImage, setPostImage] = useState("");
+  const [formData, setformData] = useState(initialState);
+
+  const { course_title, course_code, course_description } = formData;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
+    // setIsDescEmpty(value.trim() === "");
+  };
+
+  const handleImageChange = (e) => {
+    setPostImage(e.target.files[0]);
+  };
+
+  const newpost = async (e) => {
+    e.preventDefault();
+    const postData = new FormData();
+    postData.append("course_title", course_title);
+    postData.append("course_code", course_code);
+    postData.append("course_description", course_description);
+    postData.append("image", postImage);
+
+    console.log(...postData);
+    console.log("clicked");
+
+    console.log(postData);
 
     try {
       setIsLoading(true);
-      const data = await Login(userData);
-      console.log(data);
-      // Assuming your Login function returns some data indicating success
-      if (data) {
-        navigate("/dashboard/home");
-        dispatch(SET_LOGIN(true));
+      const data = await createPost(postData);
 
-        dispatch(SET_ADMIN(data.isAdmin));
-      } else {
-        // Handle unsuccessful login, maybe show an error message
-        console.log("Login failed");
+      if (data) {
+        console.log(data);
+        toast.success("Post Added Sucessfully");
+        navigate("/courses");
         setIsLoading(false);
+      } else {
+        console.log("error");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const {
-    values,
-    errors,
-    touched,
-    isSubmitting,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: signinSchema,
-    onSubmit,
-  });
+
+
 
   return (
     <>
@@ -100,90 +103,108 @@ const Studentupdate = () => {
                 <img className="w-[10rem]" src={Load} alt="" />
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="w-[400px]">
-                <div className="">
-                  <p className="mt-3 text-xs text-left text-gray-600 dark:text-gray-200">
-                    Welcome to Ofspace Academy
-                  </p>
-                  <p className="font-bold text-2xl text-gray-800">
-                    {" "}
-                    Login With
-                  </p>
-                </div>
+                <form onSubmit={newpost}>
+                <div className="mt-5">
+                  <div className="form">
+                    <div className="md:flex flex-row md:space-x-4 w-full text-xs">
+                      <div className="mb-3 space-y-2 w-full text-xs">
+                        <label className="font-semibold text-gray-600 py-2">
+                          Course Title
+                        </label>
+                        <input
+                          placeholder="Course Title"
+                          value={course_title}
+                          onChange={handleInputChange}
+                          type="text"
+                          id="course_title"
+                          name="course_title"
+                          className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
+                       text-sm focus:border-green-500 border-gray-200 focus:bg-white `}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="mb-3 space-y-2 w-full text-xs">
+                      <label className="font-semibold text-gray-600 py-2">
+                        Course Code
+                      </label>
+                      <input
+                        placeholder="Course Title"
+                        value={course_code}
+                        onChange={handleInputChange}
+                        type="text"
+                        id="course_code"
+                        name="course_code"
+                        className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
+                       text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
+                        required
+                      />
+                    </div>
+                    <div className="flex-auto w-full mb-1 text-xs space-y-2">
+                      <label className="font-semibold text-gray-600 py-2">
+                        Course Description
+                      </label>
+                      <textarea
+                        value={course_description}
+                        onChange={handleInputChange}
+                        placeholder="Enter Post Content"
+                        type="text"
+                        name="course_description"
+                        id="course_description"
+                        className={`w-full px-8 py-4 rounded-lg mb-2 font-medium bg-gray-100 border-2 placeholder-gray-500
+                    text-sm focus:border-green-500 border-gray-200 focus:border-gray-200 focus:bg-white `}
+                        required
+                      />
+                    </div>
 
-                <div className="mt-4">
-                  <label className="text-xs text-gray-500 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    className={`w-full px-8 py-3 rounded-lg mb-2 font-medium bg-[#fff] border-2 ${
-                      errors.email && touched.email
-                        ? "border-red-300 "
-                        : "border-gray-200 "
-                    }placeholder-gray-500 text-sm focus:outline-none ${
-                      errors.email && touched.email
-                        ? "focus:border-red-300 focus:bg-white "
-                        : "focus:border-gray-200 focus:bg-white "
-                    }`}
-                    value={values.email}
-                    onChange={handleChange}
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    onBlur={handleBlur}
-                  />
-                  {errors.email && touched.email && (
-                    <p className="error text-xs text-red-300">{errors.email}</p>
-                  )}
-                </div>
-                <div className="mt-4">
-                  <label className="text-xs text-gray-500 mb-2">Password</label>
-                  <input
-                    className={`w-full px-8 py-3 rounded-lg mb-2 font-medium bg-[#fff] border-2 ${
-                      errors.password && touched.password
-                        ? "border-red-300 "
-                        : "border-gray-200 "
-                    }placeholder-gray-500 text-sm focus:outline-none ${
-                      errors.password && touched.password
-                        ? "focus:border-red-300 focus:bg-white "
-                        : "focus:border-gray-200 focus:bg-white "
-                    }`}
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <div className="flex justify-between">
-                    <p></p>
-                    <a
-                      href="/forgotpassword"
-                      className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
-                    >
-                      Forgot Password?
-                    </a>
+                    <div className="flex-auto w-full mb-1 text-xs space-y-2">
+                      <label className="font-semibold text-gray-600 py-2">
+                        Select an Image
+                      </label>
+                      <input
+                        name="image"
+                        type="file"
+                        id="image"
+                        onChange={handleImageChange}
+                        className="w-full text-grey-500 text-sm
+                file:mr-5 file:rounded-full file:border-0
+                file:bg-green-50 file:py-2
+                file:px-6 file:text-sm
+                file:font-medium file:text-green-700
+                hover:file:cursor-pointer hover:file:bg-amber-50
+                hover:file:text-amber-400"
+                        required
+                      />
+                    </div>
+
+                    <div className="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
+                      {/* SUBMIT BUTTON */}
+                      {isLoading ? (
+                        <button
+                          disabled
+                          className="mt-5 tracking-wide font-semibold bg-gray-500 text-gray-100 w-full py-4 rounded-lg duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                        >
+                          <svg
+                            className="w-6 h-6 -ml-2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            data-name="Layer 1"
+                            viewBox="0 0 24 24"
+                            id="loading"
+                          >
+                            <path d="M6.804 15a1 1 0 0 0-1.366-.366l-1.732 1a1 1 0 0 0 1 1.732l1.732-1A1 1 0 0 0 6.804 15ZM3.706 8.366l1.732 1a1 1 0 1 0 1-1.732l-1.732-1a1 1 0 0 0-1 1.732ZM6 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm11.196-3a1 1 0 0 0 1.366.366l1.732-1a1 1 0 1 0-1-1.732l-1.732 1A1 1 0 0 0 17.196 9ZM15 6.804a1 1 0 0 0 1.366-.366l1-1.732a1 1 0 1 0-1.732-1l-1 1.732A1 1 0 0 0 15 6.804Zm5.294 8.83-1.732-1a1 1 0 1 0-1 1.732l1.732 1a1 1 0 0 0 1-1.732Zm-3.928 1.928a1 1 0 1 0-1.732 1l1 1.732a1 1 0 1 0 1.732-1ZM21 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm-9 7a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm-3-.804a1 1 0 0 0-1.366.366l-1 1.732a1 1 0 0 0 1.732 1l1-1.732A1 1 0 0 0 9 17.196ZM12 2a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1Z"></path>
+                          </svg>
+                          <span className="ml-3">Post is Submiting </span>
+                        </button>
+                      ) : (
+                        <button
+                          type="submit"
+                          className="mt-5 tracking-wide font-semibold bg-green-600 text-gray-100 w-full py-4 rounded-lg hover:bg-green-800 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                        >
+                          <span className="ml-3">Add New Course</span>
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  {errors.password && touched.password && (
-                    <p className="error text-xs text-red-300">
-                      {errors.password}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-6">
-                  <button className=" px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#0E927A]  rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                    Login
-                  </button>
-                </div>
-                <div className="mt-12 flex gap-2">
-                  <p className="text-xs">have an account?</p>
-                  <a
-                    href="/signup"
-                    className="text-xs text-gray-500 dark:text-gray-400 hover:underline"
-                  >
-                    Sign up
-                  </a>
                 </div>
               </form>
             )}
