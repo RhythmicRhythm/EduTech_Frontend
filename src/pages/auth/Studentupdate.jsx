@@ -12,9 +12,10 @@ import { Login } from "../../services/authService";
 import toast, { Toaster } from "react-hot-toast";
 
 const initialState = {
-    course_title: "",
-    course_code: "",
-    course_description: "",
+    semester: "",
+    department: "",
+    dob: "",
+    
   };
 
 const Studentupdate = () => {
@@ -25,7 +26,7 @@ const Studentupdate = () => {
   const [postImage, setPostImage] = useState("");
   const [formData, setformData] = useState(initialState);
 
-  const { course_title, course_code, course_description } = formData;
+  const { semester,  department, dob } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
