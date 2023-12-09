@@ -39,13 +39,21 @@ function DashboardCard07() {
             <img src={user?.photo} className="w-14 h-14 rounded-lg" alt="" />
           </div>
           <div className="">
-            <h1 className="text-xl text-gray-700 font-bold mb-2">
-              {user?.fullname}
-            </h1>
-            
             {user?.isAdmin ? (
               // Render content for staff account
-              <p className="text-xs text-gray-500">STUDENT ACCOUNT</p>
+              <h1 className="text-xl text-gray-700 font-bold mb-2">
+                {user?.fullname}
+              </h1>
+            ) : (
+              // Render content for student account
+              <h1 className="text-xl text-gray-700 font-bold mb-2">
+                {user?.fullname} {user?.fullname}
+              </h1>
+            )}
+
+            {user?.isAdmin ? (
+              // Render content for staff account
+              <p className="text-xs text-gray-500">STAFF ACCOUNT</p>
             ) : (
               // Render content for student account
               <p className="text-xs text-gray-500">STUDENT ACCOUNT</p>
