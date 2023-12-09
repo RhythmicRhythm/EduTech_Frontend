@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import { forgotSchema } from "../../schemas";
 import auth from "../../images/auth.png";
+import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword } from "../../services/authService";
@@ -37,7 +38,8 @@ const Forgotpassword = () => {
       }
     } catch (error) {
       console.log(error);
-    }s
+    }
+    s;
   };
 
   const {
@@ -58,7 +60,7 @@ const Forgotpassword = () => {
 
   return (
     <>
-     <Toaster
+      <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -91,7 +93,10 @@ const Forgotpassword = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="w-[400px]">
-                <a href="/signin" className="font-bold flex gap-1 text-gray-500 mb-20 p-4 rounded-lg bg-gray-300 w-[100px]">
+                <a
+                  href="/signin"
+                  className="font-bold flex gap-1 text-gray-500 mb-20 p-4 rounded-lg bg-gray-300 w-[100px]"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -155,13 +160,9 @@ const Forgotpassword = () => {
           </div>
         </div>
 
-        <div
-          style={{
-            backgroundImage: `url(${auth})`,
-            backgroundSize: "contain",
-          }}
-          className="login-half relative hidden w-1/2 items-center bg-red text-white lg:flex"
-        ></div>
+        <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
+        <img src={auth1} alt="" />
+        </div>
       </section>
     </>
   );
