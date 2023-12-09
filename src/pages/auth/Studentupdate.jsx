@@ -10,6 +10,7 @@ import Load from "../../images/load.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { Login } from "../../services/authService";
 import toast, { Toaster } from "react-hot-toast";
+import { updateUser } from "../../services/authService";
 
 const initialState = {
   semester: "",
@@ -43,7 +44,7 @@ const Studentupdate = () => {
     postData.append("semester", semester);
     postData.append("department", department);
     postData.append("dob", dob);
-    postData.append("image", postImage);
+    postData.append("photo", postImage);
 
     console.log(...postData);
     console.log("clicked");
@@ -170,9 +171,9 @@ const Studentupdate = () => {
                         Select a Profile Picture
                       </label>
                       <input
-                        name="image"
+                        name="photo"
                         type="file"
-                        id="image"
+                        id="photo"
                         onChange={handleImageChange}
                         className="w-full text-grey-500 text-sm
                 file:mr-5 file:rounded-full file:border-0
