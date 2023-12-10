@@ -32,18 +32,19 @@ const Card2 = () => {
 
   return (
     <div className="p-4 col-span-full xl:col-span-8 dark:bg-slate-800 rounded-lg border">
-      <div className="mb-4 flex gap-6 sm:justify-between">
+      <div className="mb-4 flex gap-14 sm:justify-between">
         <p className="font-bold text-xs sm:text-lg">All Courses</p>
         {user.isAdmin && (
           <a
             href="/newcourse"
-            className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-[#0E927A] text-xs sm:text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Add New Course
           </a>
         )}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+
         {courses.map((item) => (
           <Link
             key={item._id}
