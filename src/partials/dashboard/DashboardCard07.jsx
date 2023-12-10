@@ -42,12 +42,12 @@ function DashboardCard07() {
             {user?.isAdmin ? (
               // Render content for staff account
               <h1 className="text-xl text-gray-700 font-bold mb-2">
-                {user?.fullname}
+               {user?.title} {user?.fullname}
               </h1>
             ) : (
               // Render content for student account
               <h1 className="text-xl text-gray-700 font-bold mb-2">
-                {user?.fullname} {user?.title}
+                {user?.fullname} 
               </h1>
             )}
 

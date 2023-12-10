@@ -9,7 +9,7 @@ export const signupSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   password: yup
     .string()
-    .min(5)
+    .min(8)
     // .matches(passwordRules, { message: "Please create a stronger password" })
     .required("Required"),
     
@@ -19,7 +19,7 @@ export const signinSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   password: yup
     .string()
-    .min(5)
+    .min(8)
     .required("Required"),
 });
 export const forgotSchema = yup.object().shape({
