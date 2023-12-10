@@ -32,8 +32,8 @@ const Card2 = () => {
 
   return (
     <div className="p-4 col-span-full xl:col-span-8 dark:bg-slate-800 rounded-lg border">
-      <div className="mb-4 flex justify-between">
-        <p className="font-bold">All Courses </p>
+      <div className="mb-4 flex gap-6 sm:justify-between">
+        <p className="font-bold text-xs sm:text-lg">All Courses</p>
         {user.isAdmin && (
           <a
             href="/newcourse"
@@ -50,13 +50,15 @@ const Card2 = () => {
             to={`/courses/${item._id}`}
             className="group overflow-hidden"
           >
-            <img
-              className="h-60 w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
-              src={item.image}
-              alt=""
-            />
+            <picture>
+              <img
+                className="h-60 w-[270px] sm:w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
+                src={item.image}
+                alt=""
+              />
+            </picture>
             <div className="mt-2">
-              <h1 className="text-sm text-gray-700 font-bold">
+              <h1 className="text-[10px] text-gray-700 font-bold">
                 {item.course_code} - {item.course_title}
               </h1>
               <p className="text-xs font-normal">
