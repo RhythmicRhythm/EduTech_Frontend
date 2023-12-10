@@ -134,9 +134,9 @@ const Profile = () => {
                           {user.isAdmin && (
                             <a
                               href={`/uploadfile/${post?._id}`}
-                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
+                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs sm:text-sm"
                             >
-                              Upload Course Material
+                              Upload Material
                             </a>
                           )}
                         </div>
