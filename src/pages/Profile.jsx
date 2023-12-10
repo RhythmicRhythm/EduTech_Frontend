@@ -59,8 +59,8 @@ const Profile = () => {
                         src={post?.image}
                         alt=""
                       />
-                      <div className="mt-10 flex justify-between">
-                        <h1 className="text-xl text-gray-700 font-bold uppercase">
+                      <div className="mt-10 flex justify-between gap-2">
+                        <h1 className="text-[10px] sm:text-lg text-gray-700 font-bold uppercase">
                           {post?.course_code} - {post?.course_title}{" "}
                         </h1>
                         <div className="flex gap-2 border p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
