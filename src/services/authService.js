@@ -56,11 +56,10 @@ export const Register = async (userData) => {
   } catch (error) {
     // Handle network errors
     const message =
-      (error.response && error.response.data && error.response.data.error) ||
-      error.message ||
-      error.toString();
+      ( error.response.data.error) 
+    toast.error(message);
     toast.error(error.response.data.message);
-    console.log(error.response.data);
+    console.log(error);
   }
 };
 
