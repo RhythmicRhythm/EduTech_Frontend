@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-// export const BACKEND_URL = "http://localhost:5000";
+export const BACKEND_URL = "http://localhost:5000";
 
-export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
+// export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
 
 export const validateEmail = (email) => {
   return email.match(
@@ -64,11 +64,13 @@ export const Register = async (userData) => {
   }
 };
 
-
 // Add Course
 export const updateUser = async (postData) => {
   try {
-    const response = await axios.put(`${BACKEND_URL}/users/updateuser`, postData);
+    const response = await axios.put(
+      `${BACKEND_URL}/users/updateuser`,
+      postData
+    );
     if (response.statusText === "OK") {
       toast.success("post added Successful...");
     }
@@ -82,7 +84,7 @@ export const updateUser = async (postData) => {
     console.log(error.response.data);
   }
 };
-// Forgot Password 
+// Forgot Password
 export const forgotPassword = async (userData) => {
   try {
     const response = await axios.post(
@@ -255,7 +257,7 @@ export const uploadFile = async (postData, postId) => {
       `${BACKEND_URL}/posts/addcomment/${postId}`,
       postData
     );
-   
+
     toast.success("post added Successful...");
     return response.data;
   } catch (error) {

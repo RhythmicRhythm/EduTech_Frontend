@@ -53,6 +53,15 @@ const Profile = () => {
               <div className="grid grid-cols-12 gap-2">
                 <div className="p-4 col-span-full xl:col-span-8  dark:bg-slate-800 rounded-lg  dark:border-slate-700">
                   <div className="">
+                    <div className="">
+                    <button
+                    className="bg-red-600 text-white active:bg-pink-600 font-bold uppercase text-sm px-4 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(true)}
+                  >
+                    <Icon icon={bin} size={20} />
+                  </button>
+                    </div>
                     <div className="group overflow-hidden">
                       <img
                         className="h-[300px] sm:h[500px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
