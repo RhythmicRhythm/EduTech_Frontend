@@ -10,36 +10,7 @@ const Card3 = () => {
           alt="product"
         />
         <div>
-          <div className="my-6 flex items-center justify-between px-4">
-            <p className="font-bold text-gray-500">Product Name</p>
-            <p className="rounded-full bg-blue-500 px-2 py-0.5 text-xs font-semibold text-white">
-              $120
-            </p>
-          </div>
-          <div className="my-4 flex items-center justify-between px-4">
-            <p className="text-sm font-semibold text-gray-500">First option</p>
-            <p className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-600">
-              23
-            </p>
-          </div>
-          <div className="my-4 flex items-center justify-between px-4">
-            <p className="text-sm font-semibold text-gray-500">Second option</p>
-            <p className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-600">
-              7
-            </p>
-          </div>
-          <div className="my-4 flex items-center justify-between px-4">
-            <p className="text-sm font-semibold text-gray-500">Third option</p>
-            <p className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-600">
-              1
-            </p>
-          </div>
-          <div className="my-4 flex items-center justify-between px-4">
-            <p className="text-sm font-semibold text-gray-500">Fourth option</p>
-            <p className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-600">
-              23
-            </p>
-          </div>
+         <h1>pending section</h1>
         </div>
       </div>
     </div>
