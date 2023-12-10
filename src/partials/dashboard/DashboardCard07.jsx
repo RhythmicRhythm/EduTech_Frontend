@@ -70,7 +70,7 @@ function DashboardCard07() {
             // If isAdmin is false, display the semester information
             <div className=" text-gray-500 border-r border-gray-400">
               <p className="text-[10px]">semester</p>
-              <h2 className="text-xs font-bold text-gray-800 mr-4">
+              <h2 className="text-xs font-semibold text-gray-800 mr-2">
                 {user?.semester}
               </h2>
             </div>
@@ -78,13 +78,13 @@ function DashboardCard07() {
 
           <div className="px-2 text-gray-500 border-r border-gray-400">
             <p className="text-[10px] ">Department</p>
-            <h2 className="text-xs font-bold text-gray-600 mr-4">
+            <h2 className="text-xs font-semibold text-gray-600 mr-2">
               {user?.department}
             </h2>
           </div>
           <div className="px-2 text-gray-500 border-r">
             <p className="text-[10px] ">Date of Birth</p>
-            <h2 className="text-xs font-bold text-gray-600 mr-4">
+            <h2 className="text-xs font-semibold text-gray-600 mr-2">
               {user?.dob}
             </h2>
           </div>
@@ -101,7 +101,7 @@ function DashboardCard07() {
               <Link
                 key={item._id}
                 to={`/courses/${item._id}`}
-                className="flex justify-between bg-white shadow p-6 rounded-lg"
+                className="flex justify-between bg-white shadow p-6 rounded-lg w-[300px] sm:w-full"
               >
                 <div className="flex gap-3">
                   <div className="">
@@ -112,10 +112,10 @@ function DashboardCard07() {
                     />
                   </div>
                   <div className="mt-2">
-                    <h1 className="text-sm font-semibold text-gray-700">
+                    <h1 className="text-xs sm:text-sm font-semibold text-gray-700">
                       {item.course_code}
                     </h1>
-                    <p className="text-sm">{item.course_title}</p>
+                    <p className="text-xs sm:text-sm">{item.course_title}</p>
                   </div>
                 </div>{" "}
                 <div className="mt-4">
