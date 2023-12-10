@@ -49,13 +49,13 @@ const Profile = () => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
           <main>
-            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+            <div className="px-2 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
               <div className="grid grid-cols-12 gap-2">
                 <div className="p-4 col-span-full xl:col-span-8  dark:bg-slate-800 rounded-lg  dark:border-slate-700">
                   <div className="">
                     <div className="group overflow-hidden">
                       <img
-                        className="h-[500px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
+                        className="h-[300px] sm:h[500px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
                         src={post?.image}
                         alt=""
                       />
@@ -95,7 +95,7 @@ const Profile = () => {
                         htmlFor="tab-one"
                         className="hover:border-yellow-100 border-b-2 peer-checked/tab-one:border-green-600
                          cursor-default p-4 
-                        rounded-t-lg block"
+                        rounded-t-lg block text-sm sm:text-lg"
                       >
                         Overview
                       </label>
@@ -110,7 +110,7 @@ const Profile = () => {
                         htmlFor="tab-two"
                         className="hover:border-yellow-100 border-b-2 peer-checked/tab-two:border-green-600
                         cursor-default p-4 
-                       rounded-t-lg block"
+                       rounded-t-lg block text-sm sm:text-lg"
                       >
                         Course material
                       </label>
@@ -118,7 +118,15 @@ const Profile = () => {
                       <div className="basis-full h-0 mt-6" />
                       <div className="hidden peer-checked/tab-one:block p-4 w-full">
                         <div className="">
-                          <p className="text-sm">{post?.course_description}</p>
+                          <p
+                            className="text-xs sm:text-lg"
+                            style={{ whiteSpace: "pre-wrap" }}
+                          >
+                            {post?.course_description.replace(
+                              /<br\s*\/?>/gi,
+                              "\n"
+                            )}
+                          </p>
                         </div>
                       </div>
                       <div className="hidden peer-checked/tab-two:block p-4 w-full">
@@ -126,7 +134,7 @@ const Profile = () => {
                           {user.isAdmin && (
                             <a
                               href={`/uploadfile/${post?._id}`}
-                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
                             >
                               Upload Course Material
                             </a>
