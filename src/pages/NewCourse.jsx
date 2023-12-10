@@ -12,8 +12,6 @@ const initialState = {
 };
 
 const NewCourse = () => {
-  
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -76,7 +74,7 @@ const NewCourse = () => {
           <main>
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
               <div className="grid grid-cols-12 gap-2">
-                <div className="px-[100px] col-span-full xl:col-span-8  dark:bg-slate-800 rounded-lg  dark:border-slate-700">
+                <div className="px-[10px] sm:px-[100px] col-span-full xl:col-span-8  dark:bg-slate-800 rounded-lg  dark:border-slate-700">
                   <form onSubmit={newpost}>
                     <div className="mt-5">
                       <div className="form">
@@ -182,7 +180,7 @@ const NewCourse = () => {
                     </div>
                   </form>
                 </div>
-                <div className="">fgfgfgf</div>
+                <div className="mt-6">Pending Section ??</div>
               </div>
             </div>
           </main>
