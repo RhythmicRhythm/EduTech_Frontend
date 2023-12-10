@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import art from "../images/Artwork.png";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
@@ -7,17 +7,18 @@ import Card2 from "../partials/dashboard/Card2";
 import { Link } from "react-router-dom";
 import { getPostById, getUser, deletePost } from "../services/authService";
 import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
+import toast, { Toaster } from "react-hot-toast";
 
 const Profile = () => {
   useRedirectLoggedOutUser("/signin");
   const params = useParams();
   const postId = params.id;
+  const navigate = useNavigate();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [post, setPost] = useState(null);
   const [user, setUser] = useState([]);
-
 
   const deleteBlogPost = async () => {
     try {
@@ -52,6 +53,26 @@ const Profile = () => {
 
   return (
     <>
+      {" "}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          success: {
+            style: {
+              borderRadius: "10px",
+              background: "#145c87",
+              color: "#fff",
+            },
+          },
+          error: {
+            style: {
+              borderRadius: "10px",
+              background: "#145c87",
+              color: "#fff",
+            },
+          },
+        }}
+      />
       <div className="flex h-screen overflow-hidden">
         {/* Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

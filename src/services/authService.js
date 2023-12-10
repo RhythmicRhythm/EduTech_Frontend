@@ -253,6 +253,7 @@ export const getPostById = async (postId) => {
 export const deletePost = async (postId) => {
   try {
     const response = await axios.delete(`${BACKEND_URL}/posts/${postId}`);
+    toast.success("post deleted Successful...");
     return response.status;
   } catch (error) {
     console.log(error);
