@@ -5,7 +5,7 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import Card2 from "../partials/dashboard/Card2";
 import { Link } from "react-router-dom";
-import { getPostById, getUser } from "../services/authService";
+import { getPostById, getUser, deletePost } from "../services/authService";
 import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const Profile = () => {
@@ -17,6 +17,18 @@ const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [post, setPost] = useState(null);
   const [user, setUser] = useState([]);
+
+
+  const deleteBlogPost = async () => {
+    try {
+      const data = await deletePost(postId);
+      console.log(postId);
+      toast.success("Post Deleted Sucessfully");
+      navigate("/courses");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     async function getPostData() {
@@ -86,7 +98,7 @@ const Profile = () => {
                         <button
                           className="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                           type="button"
-                          // onClick={deleteBlogPost}
+                          onClick={deleteBlogPost}
                         >
                           Delete Post
                         </button>

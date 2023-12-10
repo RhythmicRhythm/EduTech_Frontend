@@ -249,6 +249,15 @@ export const getPostById = async (postId) => {
     console.log(error);
   }
 };
+// Delete Post
+export const deletePost = async (postId) => {
+  try {
+    const response = await axios.delete(`${BACKEND_URL}/posts/${postId}`);
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Add Comment
 export const uploadFile = async (postData, postId) => {
