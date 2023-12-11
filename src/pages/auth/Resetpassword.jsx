@@ -5,7 +5,7 @@ import auth from "../../images/auth.png";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import { resetpassword } from "../../services/authService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Load from "../../images/load.gif";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -18,6 +18,9 @@ const onSubmit = async (values, actions) => {
 
 const Resetpassword = () => {
   const navigate = useNavigate();
+  const params = useParams();
+  const emailId = params.email;
+  
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (e) => {
     const userData = {
@@ -28,7 +31,7 @@ const Resetpassword = () => {
 
     try {
       setIsLoading(true);
-      const data = await resetpassword(userData);
+      const data = await resetpassword(userData, emailId);
       console.log(data);
       if (data) {
         navigate("/signin");

@@ -21,6 +21,7 @@ const Verifycode = () => {
   const navigate = useNavigate();
   const params = useParams();
   const emailId = params.email;
+  
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (e) => {
     const userData = {
