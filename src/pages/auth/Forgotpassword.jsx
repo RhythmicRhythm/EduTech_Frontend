@@ -31,9 +31,12 @@ const Forgotpassword = () => {
       const data = await forgotPassword(userData);
       console.log(data);
       if (data) {
-        navigate("/verifycode");
+        const { email } = values;
+        navigate(`/verifycode/${email}`);
+        
       } else {
         console.log("Not Sent");
+
         setIsLoading(false);
       }
     } catch (error) {
@@ -161,7 +164,7 @@ const Forgotpassword = () => {
         </div>
 
         <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
-        <img src={auth1} alt="" />
+          <img src={auth1} alt="" />
         </div>
       </section>
     </>
