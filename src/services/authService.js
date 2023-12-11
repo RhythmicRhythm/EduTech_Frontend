@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-export const BACKEND_URL = "http://localhost:5000";
+// export const BACKEND_URL = "http://localhost:5000";
 
-// export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
+export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
 
 export const validateEmail = (email) => {
   return email.match(
@@ -55,8 +55,7 @@ export const Register = async (userData) => {
     }
   } catch (error) {
     // Handle network errors
-    const message =
-      ( error.response.data.error) 
+    const message = error.response.data.error;
     toast.error(message);
     toast.error(error.response.data.message);
     console.log(error);
