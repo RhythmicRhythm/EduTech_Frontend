@@ -60,8 +60,8 @@ function App() {
         <Route exact path="/studentupdate" element={<Studentupdate />} />
         <Route exact path="/staffupdate" element={<Staffupdate />} />
         <Route exact path="/forgotpassword" element={<Forgotpassword />} />
-        <Route exact path="/resetpassword" element={<Resetpassword />} />
-        <Route exact path="/verifycode" element={<Verifycode />} />
+        <Route exact path="/resetpassword/:email" element={<Resetpassword />} />
+        <Route exact path="/verifycode/:email" element={<Verifycode />} />
 
         {/* DASHBOARD ROUTES  */}
         <Route exact path="/dashboard/home" element={<Dashboard />} />

@@ -5,7 +5,7 @@ import auth from "../../images/auth.png";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import { verifycode } from "../../services/authService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Load from "../../images/load.gif";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -19,6 +19,8 @@ const onSubmit = async (values, actions) => {
 
 const Verifycode = () => {
   const navigate = useNavigate();
+  const params = useParams();
+  const emailId = params.email;
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (e) => {
     const userData = {
@@ -29,10 +31,10 @@ const Verifycode = () => {
 
     try {
       setIsLoading(true);
-      const data = await verifycode(userData);
+      const data = await verifycode(userData, emailId);
       console.log(data);
       if (data) {
-        navigate("/resetpassword");
+        navigate(`/resetpassword/${emailId}`);
       } else {
         console.log("Not Sent");
         setIsLoading(false);
@@ -60,7 +62,7 @@ const Verifycode = () => {
 
   return (
     <>
-     <Toaster
+      <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -92,7 +94,6 @@ const Verifycode = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="w-[400px]">
-              
                 <div className="">
                   <p className="font-bold text-3xl text-gray-700">
                     {" "}
@@ -137,7 +138,7 @@ const Verifycode = () => {
         </div>
 
         <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
-            <img src={auth1} alt="" />
+          <img src={auth1} alt="" />
         </div>
       </section>
     </>

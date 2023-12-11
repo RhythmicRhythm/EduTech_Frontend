@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-// export const BACKEND_URL = "http://localhost:5000";
+export const BACKEND_URL = "http://localhost:5000";
 
-export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
+// export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
 
 export const validateEmail = (email) => {
   return email.match(
@@ -109,10 +109,10 @@ export const forgotPassword = async (userData) => {
   }
 };
 
-export const verifycode = async (userData) => {
+export const verifycode = async (userData, emailId) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/users/resetemailsent`,
+      `${BACKEND_URL}/users/resetemailsent/${emailId}`,
       userData
     );
 
