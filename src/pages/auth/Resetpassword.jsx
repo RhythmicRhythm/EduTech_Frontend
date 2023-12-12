@@ -120,7 +120,7 @@ const Resetpassword = () => {
                     onChange={handleChange}
                     id="password"
                     type="password"
-                    placeholder="Enter Verification code"
+                    placeholder="Enter New Password"
                     onBlur={handleBlur}
                   />
                   {errors.password && touched.password && (
