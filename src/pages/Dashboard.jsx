@@ -39,7 +39,7 @@ function Dashboard() {
             <div className="grid grid-cols-12 gap-10">
               {/* Table (Top Channels) */}
               <DashboardCard07 />
-              <Card3 />
+            
               {/* <DashboardCard06 /> */}
             </div>
           </div>

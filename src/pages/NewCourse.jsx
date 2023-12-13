@@ -180,7 +180,7 @@ const NewCourse = () => {
                     </div>
                   </form>
                 </div>
-                <div className="mt-6">Pending Section ??</div>
+               
               </div>
             </div>
           </main>
