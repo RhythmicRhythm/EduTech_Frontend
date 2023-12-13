@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-// export const BACKEND_URL = "http://localhost:5000";
+export const BACKEND_URL = "http://localhost:5000";
 
-export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
+// export const BACKEND_URL = "https://edu-tech-backend.onrender.com";
 
 export const validateEmail = (email) => {
   return email.match(
