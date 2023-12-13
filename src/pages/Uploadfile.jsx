@@ -158,7 +158,7 @@ const Uploadfile = () => {
                     </div>
                   </form>
                 </div>
-                <div className="">Pending Section ??</div>
+                {/* <div className="">Pending Section ??</div> */}
               </div>
             </div>
           </main>
