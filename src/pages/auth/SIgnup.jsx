@@ -10,6 +10,8 @@ import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { BACKEND_URL } from "../../services/authService";
 
 const onSubmit = async (values, actions) => {
   console.log(values);
@@ -32,29 +34,45 @@ const Signup = () => {
 
     console.log(userData);
 
-    try {
-      setIsLoading(true);
-      const data = await Register(userData);
-      console.log(data);
-      // Assuming your Login function returns some data indicating success
-      if (data) {
-        if (data.isAdmin) {
-          // Redirect to a specific page for admin
-          navigate("/staffupdate");
-        } else {
-          // Redirect to a different page for non-admin users
-          navigate("/studentupdate");
-        }
 
-        dispatch(SET_LOGIN(true));
-      } else {
-        // Handle unsuccessful login, maybe show an error message
-        console.log("Login failed");
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   setIsLoading(true);
+    //   const data = await Register(userData);
+    //   console.log(data);
+    //   // Assuming your Login function returns some data indicating success
+    //   if (data) {
+    //     if (data.isAdmin) {
+    //       // Redirect to a specific page for admin
+    //       navigate("/staffupdate");
+    //     } else {
+    //       // Redirect to a different page for non-admin users
+    //       navigate("/studentupdate");
+    //     }
+
+    //     dispatch(SET_LOGIN(true));
+    //   } else {
+    //     // Handle unsuccessful login, maybe show an error message
+    //     console.log("Login failed");
+    //     setIsLoading(false);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    setIsLoading(true);
+    axios
+    .post(`${BACKEND_URL}/users/register`, userData)
+    .then(({ data }) => {
+      // navigate(`/dashboard/home`);
+      console.log(data);
+      
+    })
+    .catch(({ response }) => {
+      // toast.error(response.data.message);
+      console.log(response.data.message);
+      
+      setIsLoading(false);
+      
+    });
   };
 
   const {
