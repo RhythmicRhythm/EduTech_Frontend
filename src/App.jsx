@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import "./css/style.css";
 
@@ -53,6 +54,25 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          success: {
+            style: {
+              borderRadius: "10px",
+              background: "#145c87",
+              color: "#fff",
+            },
+          },
+          error: {
+            style: {
+              borderRadius: "10px",
+              background: "#145c87",
+              color: "#fff",
+            },
+          },
+        }}
+      />
       <Routes>
         {/* AUTH ROUTES */}
         <Route exact path="/signin" element={<Signin />} />

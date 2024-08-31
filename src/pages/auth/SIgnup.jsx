@@ -3,13 +3,11 @@ import { useFormik } from "formik";
 import { signupSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_LOGIN } from "../../redux/Slices/authSlice";
-import { Register } from "../../services/authService";
-import { Link, useNavigate } from "react-router-dom";
-import auth from "../../images/auth.png";
+import { useNavigate } from "react-router-dom";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { BACKEND_URL } from "../../services/authService";
 
@@ -38,7 +36,7 @@ const Signup = () => {
     axios
       .post(`${BACKEND_URL}/users/register`, userData)
       .then(({ data }) => {
-        // navigate(`/dashboard/home`);
+        navigate(`/dashboard/home`);
         console.log(data);
         dispatch(SET_LOGIN(true));
       })
@@ -70,7 +68,6 @@ const Signup = () => {
   });
   return (
     <>
-
       <section className="flex min-h-screen">
         <div className="z-0 flex w-full flex-col justify-center  px-0 text-black md:px-16 lg:w-1/2">
           <div className="min-w-screen flex min-h-screen items-center justify-center px-5 py-5">

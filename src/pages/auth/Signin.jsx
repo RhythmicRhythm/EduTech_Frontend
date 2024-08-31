@@ -3,13 +3,14 @@ import { useFormik } from "formik";
 import { signinSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_LOGIN, SET_ADMIN } from "../../redux/Slices/authSlice";
-import auth from "../../images/auth.png";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { Login } from "../../services/authService";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../services/authService";
+import axios from "axios";
 
 const onSubmit = async (values, actions) => {
   console.log(values);
@@ -30,24 +31,20 @@ const Signin = () => {
 
     console.log(userData);
 
-    try {
-      setIsLoading(true);
-      const data = await Login(userData);
-      console.log(data);
-      // Assuming your Login function returns some data indicating success
-      if (data) {
-        navigate("/dashboard/home");
+    setIsLoading(true);
+    axios
+      .post(`${BACKEND_URL}/users/login`, userData)
+      .then(({ data }) => {
+        navigate(`/dashboard/home`);
+        console.log(data);
         dispatch(SET_LOGIN(true));
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.message);
+        console.log(response.data.message);
 
-        dispatch(SET_ADMIN(data.isAdmin));
-      } else {
-        // Handle unsuccessful login, maybe show an error message
-        console.log("Login failed");
         setIsLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      });
   };
 
   const {
@@ -69,25 +66,6 @@ const Signin = () => {
 
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          success: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-          error: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-        }}
-      />
       <section className="flex min-h-screen">
         <div className="z-0 flex w-full flex-col justify-center  px-0 text-black md:px-16 lg:w-1/2">
           <div className="min-w-screen flex min-h-screen items-center justify-center px-5 py-5">
@@ -191,7 +169,7 @@ const Signin = () => {
         </div>
 
         <div className="login-half relative hidden w-1/2 items-center bg-[#F4FAF9] text-white lg:flex justify-center">
-            <img src={auth1} alt="" />
+          <img src={auth1} alt="" />
         </div>
       </section>
     </>

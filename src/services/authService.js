@@ -11,56 +11,6 @@ export const validateEmail = (email) => {
   );
 };
 
-// Login
-export const Login = async (userData) => {
-  try {
-    const response = await axios.post(`${BACKEND_URL}/users/login`, userData);
-
-    if (response.status === 200) {
-      console.log("logged in");
-      return response.data;
-    } else {
-      // Handle the custom error message here
-      const errorMessage = response.data.error || "An error occurred.";
-
-      console.log(response);
-    }
-  } catch (error) {
-    // Handle network errors
-    const message =
-      (error.response && error.response.data && error.response.data.error) ||
-      error.message ||
-      error.toString();
-    toast.error(error.response.data.message);
-    console.log(error.response.data);
-  }
-};
-
-// Login
-export const Register = async (userData) => {
-  try {
-    const response = await axios.post(
-      `${BACKEND_URL}/users/register`,
-      userData
-    );
-
-    if (response.status === 200) {
-      console.log("logged in");
-      return response.data;
-    } else {
-      // Handle the custom error message here
-      const errorMessage = response.data.error || "An error occurred.";
-
-      console.log(response);
-    }
-  } catch (error) {
-    // Handle network errors
-    // const message = error.response.data.error;
-    // toast.error(message);
-    // toast.error(error.response.data.message);
-    console.log(error);
-  }
-};
 
 // Add Course
 export const updateUser = async (postData) => {
