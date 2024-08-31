@@ -34,45 +34,20 @@ const Signup = () => {
 
     console.log(userData);
 
-
-    // try {
-    //   setIsLoading(true);
-    //   const data = await Register(userData);
-    //   console.log(data);
-    //   // Assuming your Login function returns some data indicating success
-    //   if (data) {
-    //     if (data.isAdmin) {
-    //       // Redirect to a specific page for admin
-    //       navigate("/staffupdate");
-    //     } else {
-    //       // Redirect to a different page for non-admin users
-    //       navigate("/studentupdate");
-    //     }
-
-    //     dispatch(SET_LOGIN(true));
-    //   } else {
-    //     // Handle unsuccessful login, maybe show an error message
-    //     console.log("Login failed");
-    //     setIsLoading(false);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
     setIsLoading(true);
     axios
-    .post(`${BACKEND_URL}/users/register`, userData)
-    .then(({ data }) => {
-      // navigate(`/dashboard/home`);
-      console.log(data);
-      
-    })
-    .catch(({ response }) => {
-      // toast.error(response.data.message);
-      console.log(response.data.message);
-      
-      setIsLoading(false);
-      
-    });
+      .post(`${BACKEND_URL}/users/register`, userData)
+      .then(({ data }) => {
+        // navigate(`/dashboard/home`);
+        console.log(data);
+        dispatch(SET_LOGIN(true));
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.message);
+        console.log(response.data.message);
+
+        setIsLoading(false);
+      });
   };
 
   const {
@@ -95,25 +70,7 @@ const Signup = () => {
   });
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          success: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-          error: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-        }}
-      />
+
       <section className="flex min-h-screen">
         <div className="z-0 flex w-full flex-col justify-center  px-0 text-black md:px-16 lg:w-1/2">
           <div className="min-w-screen flex min-h-screen items-center justify-center px-5 py-5">
