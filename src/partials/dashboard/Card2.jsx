@@ -60,7 +60,8 @@ const Card2 = () => {
 
   return (
     <div className="p-4">
-      <div className="mb-4 flex justify-between items-center bg-red-200">
+      <div className="mb-4 flex justify-between items-center">
+        
         <p className="font-bold text-xs sm:text-lg">All Courses</p>
         {user.role == "student" && (
           <Link

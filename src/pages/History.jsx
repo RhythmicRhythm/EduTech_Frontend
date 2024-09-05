@@ -21,7 +21,7 @@ const History = () => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
           <main>
-          <Card2 />
+          <Card2 className="px-6" />
           </main>
         </div>
       </div>
