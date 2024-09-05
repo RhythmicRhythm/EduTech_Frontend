@@ -18,7 +18,7 @@ const onSubmit = async (values, actions) => {
   actions.resetForm();
 };
 
-const Signin = () => {
+const SigninLecturer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,15 +32,15 @@ const Signin = () => {
 
     setIsLoading(true);
     axios
-      .post(`${BACKEND_URL}/users/login`, userData)
+      .post(`${BACKEND_URL}/users/login_lecturer`, userData)
       .then(({ data }) => {
         navigate(`/dashboard/home`);
         console.log(data);
         dispatch(SET_LOGIN(true));
       })
       .catch(({ response }) => {
-        toast.error(response.data.message);
-        console.log(response.data.message);
+        // toast.error(response.data.message);
+        console.log(response);
 
         setIsLoading(false);
       });
@@ -175,4 +175,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SigninLecturer;

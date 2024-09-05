@@ -8,7 +8,7 @@ import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";
 import { Link, useNavigate } from "react-router-dom";
-import { Login } from "../../services/authService";
+
 import toast, { Toaster } from "react-hot-toast";
 import { updateUser } from "../../services/authService";
 

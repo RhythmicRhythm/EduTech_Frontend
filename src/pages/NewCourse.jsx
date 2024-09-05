@@ -3,7 +3,8 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { createPost } from "../services/authService";
+import axios from "axios";
+import { BACKEND_URL } from "../services/authService";
 
 const initialState = {
   course_title: "",
@@ -44,21 +45,19 @@ const NewCourse = () => {
 
     console.log(postData);
 
-    try {
-      setIsLoading(true);
-      const data = await createPost(postData);
-
-      if (data) {
+    setIsLoading(true);
+    axios
+      .post(`${BACKEND_URL}/course/newcourse`, postData)
+      .then(({ data }) => {
+        navigate(`/courses`);
         console.log(data);
-        toast.success("Post Added Sucessfully");
-        navigate("/courses");
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.message);
+        console.log(response.data.message);
+
         setIsLoading(false);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      });
   };
   return (
     <>
@@ -180,7 +179,6 @@ const NewCourse = () => {
                     </div>
                   </form>
                 </div>
-               
               </div>
             </div>
           </main>

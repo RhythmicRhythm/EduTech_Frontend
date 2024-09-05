@@ -5,14 +5,18 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import Card2 from "../partials/dashboard/Card2";
 import { Link } from "react-router-dom";
-import { getPostById, getUser, deletePost } from "../services/authService";
+import { deletePost } from "../services/authService";
 import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { BACKEND_URL } from "../services/authService";
+import { MdDelete } from "react-icons/md";
+import { FaRegShareSquare } from "react-icons/fa";
 
 const Profile = () => {
   useRedirectLoggedOutUser("/signin");
   const params = useParams();
-  const postId = params.id;
+  const courseId = params.id;
   const navigate = useNavigate();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,59 +24,49 @@ const Profile = () => {
   const [post, setPost] = useState(null);
   const [user, setUser] = useState([]);
 
-  const deleteBlogPost = async () => {
-    try {
-      const data = await deletePost(postId);
-      console.log(postId);
-      toast.success("Post Deleted Sucessfully");
-      navigate("/courses");
-    } catch (error) {
-      console.log(error);
-    }
+  const deleteBlogPost = () => {
+    axios
+      .delete(`${BACKEND_URL}/course/${courseId}`)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.message);
+        console.log(response.data.message);
+      });
+  };
+  const getCourse = () => {
+    axios
+      .get(`${BACKEND_URL}/course/${courseId}`)
+      .then(({ data }) => {
+        console.log(data);
+        setPost(data);
+      })
+      .catch(({ response }) => {
+        console.log(response.data.message);
+      });
+  };
+
+  const getUser = () => {
+    axios
+      .get(`${BACKEND_URL}/users/getuser`)
+      .then(({ data }) => {
+        console.log(data);
+        setUser(data);
+      })
+      .catch(({ response }) => {
+        console.log(response.data.message);
+      });
   };
 
   useEffect(() => {
-    async function getPostData() {
-      const data = await getPostById(postId);
-
-      setPost(data);
-      console.log(data);
-    }
-    getPostData();
-  }, [postId]);
-
-  useEffect(() => {
-    async function getUserData() {
-      const userdata = await getUser();
-
-      setUser(userdata);
-      console.log(userdata);
-    }
-    getUserData();
+    getCourse();
+    getUser();
   }, []);
 
   return (
     <>
       {" "}
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          success: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-          error: {
-            style: {
-              borderRadius: "10px",
-              background: "#145c87",
-              color: "#fff",
-            },
-          },
-        }}
-      />
       <div className="flex h-screen overflow-hidden">
         {/* Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -130,6 +124,7 @@ const Profile = () => {
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
               </>
             ) : null}
+
             <div className="px-2 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
               <div className="grid grid-cols-12 gap-2">
                 <div className="p-4 col-span-full xl:col-span-8  dark:bg-slate-800 rounded-lg  dark:border-slate-700">
@@ -141,20 +136,7 @@ const Profile = () => {
                           type="button"
                           onClick={() => setShowModal(true)}
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                            />
-                          </svg>
+                          <MdDelete />
                         </button>
                       )}
                     </div>
@@ -169,20 +151,7 @@ const Profile = () => {
                           {post?.course_code} - {post?.course_title}{" "}
                         </h1>
                         <div className="flex gap-2 border p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5 text-green-500"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
-                            />
-                          </svg>
+                          <FaRegShareSquare />
                           <p className="font-semibold text-sm">Share</p>
                         </div>
                       </div>

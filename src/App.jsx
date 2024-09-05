@@ -4,7 +4,6 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import "./css/style.css";
 
-import "./charts/ChartjsConfig";
 
 // Import pages
 import Dashboard from "./pages/Dashboard";
@@ -30,6 +29,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/Slices/authSlice";
+import SignupLecturer from "./pages/auth/SignupLecturer";
+import SigninLecturer from "./pages/auth/SigninLecturer";
 
 axios.defaults.withCredentials = true;
 
@@ -75,8 +76,10 @@ function App() {
       />
       <Routes>
         {/* AUTH ROUTES */}
-        <Route exact path="/signin" element={<Signin />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/signuplectuere" element={<SignupLecturer />} />
+        <Route exact path="/signin" element={<Signin />} />
+        <Route exact path="/signinlecturer" element={<SigninLecturer />} />
         <Route exact path="/studentupdate" element={<Studentupdate />} />
         <Route exact path="/staffupdate" element={<Staffupdate />} />
         <Route exact path="/forgotpassword" element={<Forgotpassword />} />

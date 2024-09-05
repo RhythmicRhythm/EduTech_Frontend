@@ -11,7 +11,6 @@ export const validateEmail = (email) => {
   );
 };
 
-
 // Add Course
 export const updateUser = async (postData) => {
   try {
@@ -115,7 +114,7 @@ export const resetpassword = async (userData, emailId) => {
 export const getLoginStatus = async () => {
   try {
     const response = await axios.get(`${BACKEND_URL}/users/loggedin`);
-    console.log(response);
+   
     return response.data;
   } catch (error) {
     const message =
@@ -155,49 +154,9 @@ export const getUser = async () => {
   }
 };
 
-// Get Courses
-export const getCourses = async () => {
-  try {
-    const response = await axios.get(`${BACKEND_URL}/posts/`);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message);
-    console.log(error);
-  }
-};
 
-// Add Course
-export const createPost = async (postData) => {
-  try {
-    const response = await axios.post(`${BACKEND_URL}/posts/`, postData);
-    if (response.statusText === "OK") {
-      toast.success("post added Successful...");
-    }
-    toast.success("post added Successful...");
-    return response.data;
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    console.log(error.response.data);
-  }
-};
 
-//Get Single Post
-export const getPostById = async (postId) => {
-  try {
-    const response = await axios.get(`${BACKEND_URL}/posts/${postId}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 // Delete Post
 export const deletePost = async (postId) => {
   try {
@@ -213,7 +172,7 @@ export const deletePost = async (postId) => {
 export const uploadFile = async (postData, postId) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/posts/addcomment/${postId}`,
+      `${BACKEND_URL}/course/uploadcoursematerial/${postId}`,
       postData
     );
 

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import SidebarLinkGroup from "./SidebarLinkGroup";
 import logo from "../images/Logo.png";
-import cicon from "../images/course.png";
 import { logoutUser } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN } from "../redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { MdSpaceDashboard } from "react-icons/md";
+import { FaBookDead } from "react-icons/fa";
+import { TbLogout2 } from "react-icons/tb";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
@@ -138,20 +139,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="flex items-center justify-between">
                     <div className="grow flex items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"
-                        />
-                      </svg>
+                    <MdSpaceDashboard />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Dashboard
@@ -176,20 +164,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="flex items-center justify-between">
                     <div className="grow flex items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-                        />
-                      </svg>
+                    <FaBookDead />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Courses
@@ -215,20 +190,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     className="flex items-center cursor-pointer justify-between"
                   >
                     <div className="grow flex items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                        />
-                      </svg>
+                    <TbLogout2 />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Logout
