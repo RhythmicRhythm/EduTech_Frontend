@@ -21,7 +21,7 @@ const Profile = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [post, setPost] = useState(null);
+  const [course, setCourse] = useState(null);
   const [user, setUser] = useState([]);
 
   const deleteBlogPost = () => {
@@ -40,7 +40,7 @@ const Profile = () => {
       .get(`${BACKEND_URL}/course/${courseId}`)
       .then(({ data }) => {
         console.log(data);
-        setPost(data);
+        setCourse(data);
       })
       .catch(({ response }) => {
         console.log(response.data.message);
@@ -143,18 +143,20 @@ const Profile = () => {
                     <div className="group overflow-hidden">
                       <img
                         className="h-[300px] sm:h[500px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
-                        src={post?.image}
+                        src={course?.image}
                         alt=""
                       />
                       <div className="mt-10 flex justify-between gap-2">
-                       <div className="">
-                       <h1 className="text-[10px] sm:text-lg text-gray-700 font-bold uppercase">
-                          {post?.course_code} - {post?.course_title}{" "}
-                        </h1>
-                        <h1 className="text-[10px] sm:text-lg text-gray-700 font-semibold ">
-                          Lecturer(s) - {post?.course_title}{" "}
-                        </h1>
-                       </div>
+                        <div className="">
+                          <h1 className="text-[10px] sm:text-lg text-gray-700 font-bold uppercase">
+                            {course?.course_code} - {course?.course_title}{" "}
+                          </h1>
+                          <h1 className="text-[10px] sm:text-lg text-gray-700 font-semibold ">
+                            <span className=""> Lecturer(s)</span> -{" "}
+                            {}
+                            <span className=""> </span>
+                          </h1>
+                        </div>
                         <div className="flex gap-2 border p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
                           <FaRegShareSquare />
                           <p className="font-semibold text-sm">Share</p>
@@ -201,7 +203,7 @@ const Profile = () => {
                             className="text-xs sm:text-lg"
                             style={{ whiteSpace: "pre-wrap" }}
                           >
-                            {post?.course_description.replace(
+                            {course?.course_description.replace(
                               /<br\s*\/?>/gi,
                               "\n"
                             )}
@@ -220,7 +222,7 @@ const Profile = () => {
                           )}
                         </div>
                         <div className="">
-                          {post?.course_files.map((file, index) => (
+                          {course?.course_files.map((file, index) => (
                             <div
                               key={index}
                               className="flex justify-between bg-white p-2 rounded-lg mb-2"
