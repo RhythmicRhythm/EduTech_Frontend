@@ -4,7 +4,6 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import "./css/style.css";
 
-
 // Import pages
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
@@ -28,6 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/Slices/authSlice";
+import RegisterCourses from "./pages/RegisterCourses";
 
 axios.defaults.withCredentials = true;
 
@@ -43,8 +43,6 @@ function App() {
     }
     loginStatus();
   }, [dispatch]);
-
-
 
   return (
     <>
@@ -84,12 +82,13 @@ function App() {
         <Route exact path="/uploadfile/:id" element={<Uploadfile />} />
         <Route exact path="/newcourse" element={<NewCourse />} />
         <Route exact path="/assignlecturer" element={<AssignLecturers />} />
+        <Route exact path="/registercourses" element={<RegisterCourses />} />
+
         <Route
           exact
           path="/settings/changepassword"
           element={<Changepassword />}
         />
-       
       </Routes>
     </>
   );

@@ -154,14 +154,20 @@ const Profile = () => {
                           <h1 className="text-[10px] sm:text-lg text-gray-700 font-bold uppercase">
                             {course?.course_code} - {course?.course_title}{" "}
                           </h1>
-                          <h1 className="text-[10px] sm:text-lg text-gray-700 font-semibold ">
-                            <span className=""> Lecturer(s)</span> - {}
+                          <div className="text-[10px] sm:text-sm text-gray-700 font-semibold flex">
+                            <span className="mr-2"> Lecturer(s) - </span>  {}
                             <span className=""> </span>
-                          </h1>
+                            {course.lecturers.map((lecturer) => (
+                              <span key={lecturer._id} className="">
+                                {" "}
+                                <h4>{lecturer.fullname}</h4>
+                              </span>
+                            ))}
+                          </div>
                         </div>
                         <div className="flex gap-2 border items-center p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
-                          <FaRegShareSquare />
-                          <p className="font-semibold text-sm">Share</p>
+                          <FaRegShareSquare className="text-xs"/>
+                          <p className="font-semibold text-xs">Share</p>
                         </div>
                       </div>
                     </div>
@@ -186,7 +192,7 @@ const Profile = () => {
                            activeTab === "materials" ? "border-green-400" : ""
                          }`}
                         >
-                          Course Materials
+                          Materials
                         </buton>
                         <buton
                           onClick={() => setActiveTab("assignment")}
@@ -205,7 +211,7 @@ const Profile = () => {
                           <div className="p-4 w-full">
                             <div className="">
                               <p
-                                className="text-xs sm:text-lg"
+                                className="text-xs sm:text-base"
                                 style={{ whiteSpace: "pre-wrap" }}
                               >
                                 {course?.course_description.replace(
