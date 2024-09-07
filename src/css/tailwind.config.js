@@ -1,6 +1,4 @@
 const plugin = require("tailwindcss/plugin");
-import daisyui from "daisyui";
-import daisyUIThemes from "daisyui/src/theming/themes";
 
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -56,7 +54,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('daisyui'),
     // eslint-disable-next-line global-require
     require("@tailwindcss/forms"),
     // add custom variant for expanding sidebar

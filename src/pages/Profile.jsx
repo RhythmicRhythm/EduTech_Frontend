@@ -12,6 +12,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../services/authService";
 import { MdDelete } from "react-icons/md";
 import { FaRegShareSquare } from "react-icons/fa";
+import empty from "../images/emptyimg.png";
 
 const Profile = () => {
   useRedirectLoggedOutUser("/signin");
@@ -20,6 +21,8 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
+
   const [showModal, setShowModal] = useState(false);
   const [course, setCourse] = useState(null);
   const [user, setUser] = useState([]);
@@ -146,109 +149,135 @@ const Profile = () => {
                         src={course?.image}
                         alt=""
                       />
-                      <div className="mt-10 flex justify-between gap-2">
+                      <div className="mt-10 flex items-center justify-between gap-2">
                         <div className="">
                           <h1 className="text-[10px] sm:text-lg text-gray-700 font-bold uppercase">
                             {course?.course_code} - {course?.course_title}{" "}
                           </h1>
                           <h1 className="text-[10px] sm:text-lg text-gray-700 font-semibold ">
-                            <span className=""> Lecturer(s)</span> -{" "}
-                            {}
+                            <span className=""> Lecturer(s)</span> - {}
                             <span className=""> </span>
                           </h1>
                         </div>
-                        <div className="flex gap-2 border p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
+                        <div className="flex gap-2 border items-center p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
                           <FaRegShareSquare />
                           <p className="font-semibold text-sm">Share</p>
                         </div>
                       </div>
                     </div>
 
-                    <section className="flex flex-row flex-wrap">
-                      <input
-                        id="tab-one"
-                        type="radio"
-                        name="tabs"
-                        className="peer/tab-one opacity-0 absolute"
-                        defaultChecked
-                      />
-                      <label
-                        htmlFor="tab-one"
-                        className="hover:border-yellow-100 border-b-2 peer-checked/tab-one:border-green-600
-                         cursor-default p-4 
-                        rounded-t-lg block text-sm sm:text-lg"
-                      >
-                        Overview
-                      </label>
-
-                      <input
-                        id="tab-two"
-                        type="radio"
-                        name="tabs"
-                        className="peer/tab-two opacity-0 absolute"
-                      />
-                      <label
-                        htmlFor="tab-two"
-                        className="hover:border-yellow-100 border-b-2 peer-checked/tab-two:border-green-600
-                        cursor-default p-4 
-                       rounded-t-lg block text-sm sm:text-lg"
-                      >
-                        Course material
-                      </label>
-
-                      <div className="basis-full h-0 mt-6" />
-                      <div className="hidden peer-checked/tab-one:block p-4 w-full">
-                        <div className="">
-                          <p
-                            className="text-xs sm:text-lg"
-                            style={{ whiteSpace: "pre-wrap" }}
-                          >
-                            {course?.course_description.replace(
-                              /<br\s*\/?>/gi,
-                              "\n"
-                            )}
-                          </p>
-                        </div>
+                    <section className="mt-10 mb-4">
+                      <div className="flex">
+                        <buton
+                          onClick={() => setActiveTab("overview")}
+                          className={`hover:border-green-300 cursor-pointer border-b-4 
+                             px-4 py-1  text-sm sm:text-lg ${
+                               activeTab === "overview"
+                                 ? "border-green-400"
+                                 : ""
+                             }`}
+                        >
+                          Overview
+                        </buton>
+                        <buton
+                          onClick={() => setActiveTab("materials")}
+                          className={` border-b-4 
+                         cursor-pointer px-4 py-1  rounded-t-lg block text-sm sm:text-lg ${
+                           activeTab === "materials" ? "border-green-400" : ""
+                         }`}
+                        >
+                          Course Materials
+                        </buton>
+                        <buton
+                          onClick={() => setActiveTab("assignment")}
+                          className={`hover:border-green-300 cursor-pointer border-b-4 
+                            px-4 py-1  text-sm sm:text-lg ${
+                              activeTab === "assignment"
+                                ? "border-green-400"
+                                : ""
+                            }`}
+                        >
+                          Assignments
+                        </buton>
                       </div>
-                      <div className="hidden peer-checked/tab-two:block p-4 w-full">
-                        <div className="p-6">
-                          {user.isAdmin && (
-                            <a
-                              href={`/uploadfile/${post?._id}`}
-                              className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs sm:text-sm"
-                            >
-                              Upload Material
-                            </a>
-                          )}
-                        </div>
+                      {activeTab == "overview" && (
                         <div className="">
-                          {course?.course_files.map((file, index) => (
-                            <div
-                              key={index}
-                              className="flex justify-between bg-white p-2 rounded-lg mb-2"
-                            >
-                              <div className="flex gap-3">
-                                <div className="">
-                                  <img src={art} alt="" />
-                                </div>
-                                <div className="mt-4">
-                                  <h1 className="text-sm font-semibold text-gray-600">
-                                    {file.file_name}
-                                  </h1>
-                                </div>
-                              </div>{" "}
-                              <div className="mt-4">
-                                <a
-                                  href={file.file}
-                                  class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                  Download
-                                </a>
+                          <div className="p-4 w-full">
+                            <div className="">
+                              <p
+                                className="text-xs sm:text-lg"
+                                style={{ whiteSpace: "pre-wrap" }}
+                              >
+                                {course?.course_description.replace(
+                                  /<br\s*\/?>/gi,
+                                  "\n"
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      {activeTab == "materials" && (
+                        <div className="px-2 py-4 w-full">
+                          <div className="flex justify-end">
+                            {user.role == "student" && (
+                              <a
+                                href={`/uploadfile/${course?._id}`}
+                                className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs sm:text-sm"
+                              >
+                                Upload Material
+                              </a>
+                            )}
+                          </div>
+                          {course?.course_files.length == 0 ? (
+                            <div className="flex items-center  justify-center">
+                              <div className="">
+                                <img src={empty} alt="" className="w-[500px]" />
+
+                                {user.role == "student" && (
+                                  <p className="text-center">
+                                    No materials have been assigned yet
+                                  </p>
+                                )}
+                                {user.role == "lecturer" && (
+                                  <p className="text-center">
+                                    You Have Not added any course materials,
+                                    Proceed to add materials
+                                  </p>
+                                )}
                               </div>
                             </div>
-                          ))}
+                          ) : (
+                            <div className="">
+                              {course?.course_files.map((file, index) => (
+                                <div
+                                  key={index}
+                                  className="flex justify-between bg-white p-2 rounded-lg mb-2"
+                                >
+                                  <div className="flex gap-3">
+                                    <div className="">
+                                      <img src={art} alt="" />
+                                    </div>
+                                    <div className="mt-4">
+                                      <h1 className="text-sm font-semibold text-gray-600">
+                                        {file.file_name}
+                                      </h1>
+                                    </div>
+                                  </div>{" "}
+                                  <div className="mt-4">
+                                    <a
+                                      href={file.file}
+                                      class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    >
+                                      Download
+                                    </a>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      )}
                     </section>
                   </div>
                 </div>
