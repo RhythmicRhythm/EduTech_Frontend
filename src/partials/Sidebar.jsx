@@ -139,7 +139,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="flex items-center justify-between">
                     <div className="grow flex items-center">
-                    <MdSpaceDashboard />
+                      <MdSpaceDashboard />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Dashboard
@@ -164,7 +164,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="flex items-center justify-between">
                     <div className="grow flex items-center">
-                    <FaBookDead />
+                      <FaBookDead />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Courses
@@ -190,7 +190,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     className="flex items-center cursor-pointer justify-between"
                   >
                     <div className="grow flex items-center">
-                    <TbLogout2 />
+                      <TbLogout2 />
 
                       <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         Logout
