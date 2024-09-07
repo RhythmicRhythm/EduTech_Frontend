@@ -65,7 +65,7 @@ const Card2 = () => {
         <p className="font-bold text-xs sm:text-lg">All Courses</p>
         {user.role == "student" && (
           <Link
-            to="/newcourse"
+            to="/registercourses"
             className="bg-[#0E927A] text-xs sm:text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
              Course Registration

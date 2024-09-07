@@ -155,9 +155,9 @@ const Profile = () => {
                             {course?.course_code} - {course?.course_title}{" "}
                           </h1>
                           <div className="text-[10px] sm:text-sm text-gray-700 font-semibold flex">
-                            <span className="mr-2"> Lecturer(s) - </span>  {}
+                            <span className="mr-2"> Lecturer(s) - </span> {}
                             <span className=""> </span>
-                            {course.lecturers.map((lecturer) => (
+                            {course?.lecturers.map((lecturer) => (
                               <span key={lecturer._id} className="">
                                 {" "}
                                 <h4>{lecturer.fullname}</h4>
@@ -166,7 +166,7 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="flex gap-2 border items-center p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
-                          <FaRegShareSquare className="text-xs"/>
+                          <FaRegShareSquare className="text-xs" />
                           <p className="font-semibold text-xs">Share</p>
                         </div>
                       </div>
