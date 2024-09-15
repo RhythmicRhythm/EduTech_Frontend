@@ -207,11 +207,11 @@ const Profile = () => {
                         </buton>
                       </div>
                       {activeTab == "overview" && (
-                        <div className="">
+                        <div className="mt-4">
                           <div className="p-4 w-full">
                             <div className="">
                               <p
-                                className="text-xs sm:text-base"
+                                className="text-xs sm:text-sm"
                                 style={{ whiteSpace: "pre-wrap" }}
                               >
                                 {course?.course_description.replace(
