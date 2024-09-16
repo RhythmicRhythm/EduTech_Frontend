@@ -3,6 +3,9 @@ import axios from "axios";
 import { BACKEND_URL } from "../services/authService";
 import empty from "../images/emptyimg.png";
 import toast from "react-hot-toast";
+import { BsFileEarmarkPlusFill } from "react-icons/bs";
+import { ImSpinner10 } from "react-icons/im";
+import DashboardCourseList from "../components/common/skeletons/DashboardCourseList";
 
 const RegisterCourses = () => {
   const [user, setUser] = useState([]);
@@ -10,6 +13,8 @@ const RegisterCourses = () => {
   const [myCourses, setMyCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedLecturer, setSelectedLecturer] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [myLoading, setMyLoading] = useState(false);
 
   const getUser = () => {
     axios
@@ -33,15 +38,18 @@ const RegisterCourses = () => {
       });
   };
   const getMyCourses = () => {
+    setMyLoading(true);
     axios
       .get(`${BACKEND_URL}/course/studentcourses`)
       .then(({ data }) => {
         setMyCourses(data);
         console.log(data);
+        setMyLoading(false);
       })
       .catch(({ response }) => {
         console.log(response.data.message);
         console.log(response);
+        setMyLoading(false);
       });
   };
 
@@ -69,16 +77,19 @@ const RegisterCourses = () => {
     console.log(selectedCourse);
     console.log(selectedLecturer);
 
+    setIsLoading(true);
     axios
       .post(`${BACKEND_URL}/course/registercourse/${selectedCourse}`)
       .then(({ data }) => {
         console.log(data);
         toast.success(data.message);
         getMyCourses();
+        setIsLoading(false);
       })
       .catch(({ response }) => {
         toast.error(response.data.message);
         console.log(response.data.message);
+        setIsLoading(false);
       });
   };
 
@@ -117,10 +128,24 @@ const RegisterCourses = () => {
                   <div className="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
                     {/* SUBMIT BUTTON */}
                     <button
+                      disabled={isLoading}
                       type="submit"
-                      className="mt-5 tracking-wide font-semibold bg-green-600 text-gray-100 w-full py-4 rounded-lg hover:bg-green-800 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                      className="cursor-pointer flex gap-1 items-center justify-center
+                      px-8 py-4 bg-green-300 text-green-700 border-2 hover:border-green-500 
+                       rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-sm sm:text-lg"
                     >
-                      <span className="ml-3">Register Course</span>
+                      {isLoading ? (
+                        <>
+                          {" "}
+                          <ImSpinner10 className="animate-spin" />
+                          <span>loading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <BsFileEarmarkPlusFill />
+                          <span>Register Course</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -132,31 +157,41 @@ const RegisterCourses = () => {
                   Registered Course
                 </h1>
               </div>
-              {myCourses &&
-                myCourses.map((item) => (
-                  <div
-                    key={item._id}
-                    className="mb-2 flex justify-between items-center bg-white shadow-xl border-2 border-gray-400 p-2 rounded-lg w-[300px] w-full"
-                  >
-                    <div className="flex gap-3 items-center">
-                      <div className="">
-                        <img
-                          src={item.image}
-                          className="w-16 h-16 rounded-lg"
-                          alt=""
-                        />
+              {myLoading ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <DashboardCourseList /> <DashboardCourseList />{" "}
+                  <DashboardCourseList /> <DashboardCourseList />
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {myCourses &&
+                    myCourses.map((item) => (
+                      <div
+                        key={item._id}
+                        className="mb-2 flex justify-between items-center bg-white shadow-xl border-2 border-gray-400 
+                        p-2 rounded-lg w-full"
+                      >
+                        <div className="flex gap-3 items-center">
+                          <div className="">
+                            <img
+                              src={item.image}
+                              className="w-16 h-16 rounded-lg"
+                              alt=""
+                            />
+                          </div>
+                          <div className="mt-2">
+                            <h1 className="text-xs sm:text-sm font-semibold text-gray-700">
+                              {item.course_code}
+                            </h1>
+                            <p className="text-xs sm:text-sm">
+                              {item.course_title}
+                            </p>
+                          </div>
+                        </div>{" "}
                       </div>
-                      <div className="mt-2">
-                        <h1 className="text-xs sm:text-sm font-semibold text-gray-700">
-                          {item.course_code}
-                        </h1>
-                        <p className="text-xs sm:text-sm">
-                          {item.course_title}
-                        </p>
-                      </div>
-                    </div>{" "}
-                  </div>
-                ))}
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -51,6 +51,10 @@ module.exports = {
       zIndex: {
         60: "60",
       },
+      disabled: {
+        'button': 'bg-gray-300 text-gray-600 cursor-not-allowed',
+      },
+
     },
   },
   plugins: [

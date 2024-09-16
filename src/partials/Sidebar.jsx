@@ -109,7 +109,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           </button>
           {/* Logo */}
           <NavLink end to="/" className="block">
-            <img src={logo} alt="" />
+            <img className="" src={logo} alt="" />
           </NavLink>
         </div>
 
@@ -175,12 +175,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               </li>
               <li
                 className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                  pathname.includes("courses") && "text-green-600"
+                  pathname.includes("log") && "text-green-600"
                 }`}
               >
                 <div // add logout here
                   className={`block text-[#4D6276] truncate transition duration-150 ${
-                    pathname.includes("courses")
+                    pathname.includes("logout")
                       ? "text-green-600"
                       : "hover:text-green-200"
                   }`}

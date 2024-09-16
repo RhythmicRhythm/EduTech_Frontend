@@ -6,6 +6,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../services/authService";
 import empty from "../../images/emptyimg.png";
 import CourseListSkeleton from "../../components/common/skeletons/CourseListSkeleton";
+import { PiPlusCircleBold } from "react-icons/pi";
 
 const Card2 = () => {
   const [courses, setCourses] = useState([]);
@@ -20,6 +21,8 @@ const Card2 = () => {
       .get(`${BACKEND_URL}/users/getuser`)
       .then(({ data }) => {
         setUser(data);
+        console.log(data);
+
         setIsLoading(false);
       })
       .catch(({ response }) => {
@@ -69,39 +72,19 @@ const Card2 = () => {
     }
   }, [user]);
 
-    // Early return if loading
-    if (isLoading) {
-      return <>
-      <div className="flex flex-wrap justify-center gap-2">
-        <CourseListSkeleton />
-        <CourseListSkeleton />
-        <CourseListSkeleton />
-      </div>
-      </>;
-    }
-
-      // Early return if no courses and not loading
-  if (courses.length === 0) {
+  // Early return if loading
+  if (isLoading) {
     return (
-      <div className="flex items-center justify-center">
-        <div>
-          <img src={empty} alt="" className="w-[500px]" />
-          {user.role === "student" && (
-            <p className="text-center">
-              You have not registered for any courses. Please register for your courses.
-            </p>
-          )}
-          {user.role === "lecturer" && (
-            <p className="text-center">
-              You have not been assigned any courses. A course will be assigned to you soon.
-            </p>
-          )}
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 px-6">
+          <CourseListSkeleton />
+          <CourseListSkeleton />
+          <CourseListSkeleton />
         </div>
-      </div>
+      </>
     );
   }
 
-  // Default return when courses are available
   return (
     <div className="p-4">
       <div className="mb-4 flex justify-between items-center">
@@ -109,37 +92,55 @@ const Card2 = () => {
         {user.role === "student" && (
           <Link
             to="/registercourses"
-            className="bg-[#0E927A] text-xs sm:text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="cursor-pointer flex gap-1 items-center
+              px-4 py-2 bg-green-200 text-green-700 border-2 hover:border-green-500 
+               rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-sm sm:text-lg"
           >
-            Course Registration
+            <PiPlusCircleBold className="text-xl font-bold" />
+            Register
           </Link>
         )}
       </div>
 
-      <div className="flex flex-wrap">
-        {courses.map((item) => (
-          <Link
-            key={item._id}
-            to={`/courses/${item._id}`}
-            className="group overflow-hidden w-full md:w-1/2 lg:w-1/3 p-4"
-          >
-            <img
-              className="h-[300px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
-              src={item.image}
-              alt=""
-            />
-            <div className="mt-2">
-              <h1 className="text-[10px] text-gray-700 font-bold">
-                {item.course_code} - {item.course_title}
-              </h1>
-              <p className="text-xs font-normal">
-                Lecturer -{" "}
-                <span className="font-sm font-bold"> {item.name}</span>
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {courses.length == 0 ? (
+        <div className="flex flex-col items-center justify-center ">
+          <img src={empty} alt="" className="w-[200px] sm:w-[400px]" />
+         <div className="max-w-xl">
+         <p className="text-center text-sm sm:text-base font-medium text-gray-500">
+            {user.role === "student"
+              ? "You haven’t registered for any courses yet. Start by selecting and registering for your courses."
+              : user.role === "lecturer"
+              ? "No courses have been assigned to you yet. You will receive your course assignments soon."
+              : ""}
+          </p>
+         </div>
+        </div>
+      ) : (
+        <div className="flex flex-wrap">
+          {courses.map((item) => (
+            <Link
+              key={item._id}
+              to={`/courses/${item._id}`}
+              className="group overflow-hidden w-full md:w-1/2 lg:w-1/3 p-4"
+            >
+              <img
+                className="h-[200px] w-full rounded-lg group-hover:scale-105 transition-transform duration-200 ease-in-out"
+                src={item.image}
+                alt=""
+              />
+              <div className="mt-2">
+                <h1 className="text-xs text-gray-700 font-bold">
+                  {item.course_code} - {item.course_title}
+                </h1>
+                <p className="text-sm font-normal">
+                  Lecturer -{" "}
+                  <span className="text-xs font-bold"> {item.name}</span>
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
