@@ -15,7 +15,6 @@ import { FaRegShareSquare } from "react-icons/fa";
 import empty from "../images/emptyimg.png";
 import { FaUpload, FaDownload } from "react-icons/fa";
 
-
 const Profile = () => {
   useRedirectLoggedOutUser("/signin");
   const params = useParams();
@@ -158,13 +157,20 @@ const Profile = () => {
                           </h1>
                           <div className="text-[10px] sm:text-sm text-gray-700 font-semibold flex">
                             <span className="mr-2"> Lecturer(s) - </span> {}
-                            <span className=""> </span>
-                            {course?.lecturers.map((lecturer) => (
-                              <span key={lecturer._id} className="">
-                                {" "}
-                                <h4>{lecturer.fullname}</h4>
+                            {course?.lecturers.length == 0 ? (
+                              <span className="">
+                                Lecturer will be assigned
                               </span>
-                            ))}
+                            ) : (
+                              <span className="">
+                                {course?.lecturers.map((lecturer) => (
+                                  <span key={lecturer._id} className="">
+                                    {" "}
+                                    <h4>{lecturer.fullname}</h4>
+                                  </span>
+                                ))}
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex gap-2 border items-center p-2 rounded-lg cursor-pointer border-green-200  hover:border-green-600">
@@ -280,7 +286,9 @@ const Profile = () => {
                                     className="cursor-pointer flex gap-1 items-center justify-center
                       px-4 py-2 bg-green-300 text-green-700 border-2 hover:border-green-500 
                        rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-xs"
-                                  > <FaDownload />
+                                  >
+                                    {" "}
+                                    <FaDownload />
                                     Download
                                   </Link>
                                 </div>

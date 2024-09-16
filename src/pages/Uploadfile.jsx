@@ -3,7 +3,6 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { uploadFile } from "../services/authService";
 import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { ImSpinner10 } from "react-icons/im";
 import axios from "axios";
