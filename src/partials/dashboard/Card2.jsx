@@ -94,9 +94,9 @@ const Card2 = () => {
             to="/registercourses"
             className="cursor-pointer flex gap-1 items-center
               px-4 py-2 bg-green-200 text-green-700 border-2 hover:border-green-500 
-               rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-sm sm:text-lg"
+               rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-xs sm:text-lg"
           >
-            <PiPlusCircleBold className="text-xl font-bold" />
+            <PiPlusCircleBold className="text-sm sm:text-xl font-bold" />
             Register
           </Link>
         )}
@@ -105,15 +105,15 @@ const Card2 = () => {
       {courses.length == 0 ? (
         <div className="flex flex-col items-center justify-center ">
           <img src={empty} alt="" className="w-[200px] sm:w-[400px]" />
-         <div className="max-w-xl">
-         <p className="text-center text-sm sm:text-base font-medium text-gray-500">
-            {user.role === "student"
-              ? "You haven’t registered for any courses yet. Start by selecting and registering for your courses."
-              : user.role === "lecturer"
-              ? "No courses have been assigned to you yet. You will receive your course assignments soon."
-              : ""}
-          </p>
-         </div>
+          <div className="max-w-xl">
+            <p className="text-center text-sm sm:text-base font-medium text-gray-500">
+              {user.role === "student"
+                ? "You haven’t registered for any courses yet. Start by selecting and registering for your courses."
+                : user.role === "lecturer"
+                ? "No courses have been assigned to you yet. You will receive your course assignments soon."
+                : ""}
+            </p>
+          </div>
         </div>
       ) : (
         <div className="flex flex-wrap">

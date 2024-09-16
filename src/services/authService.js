@@ -168,22 +168,3 @@ export const deletePost = async (postId) => {
   }
 };
 
-// Add Comment
-export const uploadFile = async (postData, postId) => {
-  try {
-    const response = await axios.post(
-      `${BACKEND_URL}/course/uploadcoursematerial/${postId}`,
-      postData
-    );
-
-    toast.success("post added Successful...");
-    return response.data;
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message);
-    console.log(error.response.data);
-  }
-};

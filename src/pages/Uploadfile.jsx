@@ -3,7 +3,11 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import {  uploadFile } from "../services/authService";
+import { uploadFile } from "../services/authService";
+import { BsFileEarmarkPlusFill } from "react-icons/bs";
+import { ImSpinner10 } from "react-icons/im";
+import axios from "axios";
+import { BACKEND_URL } from "../services/authService";
 
 const initialState = {
   file_name: "",
@@ -24,7 +28,6 @@ const Uploadfile = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
-    
   };
 
   const handleImageChange = (e) => {
@@ -42,21 +45,20 @@ const Uploadfile = () => {
 
     console.log(postData);
 
-    try {
-      setIsLoading(true);
-      const data = await uploadFile(postData, postId);
-
-      if (data) {
+    setIsLoading(true);
+    axios
+      .post(`${BACKEND_URL}/course/uploadcoursematerial/${postId}`, postData)
+      .then(({ data }) => {
         console.log(data);
-        toast.success("Post Added Sucessfully");
-        navigate("/courses");
+        toast.success("File Uploaded Sucessfully");
+        navigate(`/courses/${postId}`);
         setIsLoading(false);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.message);
+        console.log(response.data.message);
+        setIsLoading(false);
+      });
   };
   return (
     <>
@@ -117,42 +119,26 @@ const Uploadfile = () => {
 
                         <div className="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
                           {/* SUBMIT BUTTON */}
-                          {isLoading ? (
-                            <button
-                              disabled
-                              className="mt-5 tracking-wide font-semibold bg-gray-500 text-gray-100 w-full py-4 rounded-lg duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                            >
-                              <svg
-                                className="w-6 h-6 -ml-2"
-                                xmlns="http://www.w3.org/2000/svg"
-                                data-name="Layer 1"
-                                viewBox="0 0 24 24"
-                                id="loading"
-                              >
-                                <path d="M6.804 15a1 1 0 0 0-1.366-.366l-1.732 1a1 1 0 0 0 1 1.732l1.732-1A1 1 0 0 0 6.804 15ZM3.706 8.366l1.732 1a1 1 0 1 0 1-1.732l-1.732-1a1 1 0 0 0-1 1.732ZM6 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm11.196-3a1 1 0 0 0 1.366.366l1.732-1a1 1 0 1 0-1-1.732l-1.732 1A1 1 0 0 0 17.196 9ZM15 6.804a1 1 0 0 0 1.366-.366l1-1.732a1 1 0 1 0-1.732-1l-1 1.732A1 1 0 0 0 15 6.804Zm5.294 8.83-1.732-1a1 1 0 1 0-1 1.732l1.732 1a1 1 0 0 0 1-1.732Zm-3.928 1.928a1 1 0 1 0-1.732 1l1 1.732a1 1 0 1 0 1.732-1ZM21 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm-9 7a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm-3-.804a1 1 0 0 0-1.366.366l-1 1.732a1 1 0 0 0 1.732 1l1-1.732A1 1 0 0 0 9 17.196ZM12 2a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1Z"></path>
-                              </svg>
-                              <span className="ml-3">Post is Submiting </span>
-                            </button>
-                          ) : (
-                            <button
-                              type="submit"
-                              className="mt-5 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                            >
-                              <svg
-                                className="w-6 h-6 -ml-2"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                <circle cx="8.5" cy={7} r={4} />
-                                <path d="M20 8v6M23 11h-6" />
-                              </svg>
-                              <span className="ml-3">Upload File</span>
-                            </button>
-                          )}
+                          <button
+                            disabled={isLoading}
+                            type="submit"
+                            className="cursor-pointer flex gap-1 items-center justify-center
+                      px-8 py-4 bg-green-300 text-green-700 border-2 hover:border-green-500 
+                       rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-sm sm:text-lg"
+                          >
+                            {isLoading ? (
+                              <>
+                                {" "}
+                                <ImSpinner10 className="animate-spin" />
+                                <span>loading...</span>
+                              </>
+                            ) : (
+                              <>
+                                <BsFileEarmarkPlusFill />
+                                <span>Upload File</span>
+                              </>
+                            )}
+                          </button>
                         </div>
                       </div>
                     </div>

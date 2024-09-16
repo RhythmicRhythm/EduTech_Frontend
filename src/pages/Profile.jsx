@@ -13,6 +13,8 @@ import { BACKEND_URL } from "../services/authService";
 import { MdDelete } from "react-icons/md";
 import { FaRegShareSquare } from "react-icons/fa";
 import empty from "../images/emptyimg.png";
+import { FaUpload, FaDownload } from "react-icons/fa";
+
 
 const Profile = () => {
   useRedirectLoggedOutUser("/signin");
@@ -227,12 +229,16 @@ const Profile = () => {
                         <div className="px-2 py-4 w-full">
                           <div className="flex justify-end">
                             {user.role == "student" && (
-                              <a
-                                href={`/uploadfile/${course?._id}`}
-                                className="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs sm:text-sm"
+                              <Link
+                                to={`/uploadfile/${course?._id}`}
+                                className="cursor-pointer flex gap-1 items-center
+                                px-4 py-2 bg-green-200 text-green-700 border-2 hover:border-green-500 
+                                 rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-xs sm:text-lg"
                               >
-                                Upload Material
-                              </a>
+                                {" "}
+                                <FaUpload className="text-sm sm:text-xl font-bold " />
+                                Upload
+                              </Link>
                             )}
                           </div>
                           {course?.course_files.length == 0 ? (
@@ -240,44 +246,43 @@ const Profile = () => {
                               <div className="">
                                 <img src={empty} alt="" className="w-[500px]" />
 
-                                {user.role == "student" && (
-                                  <p className="text-center">
-                                    No materials have been assigned yet
+                                <div className="max-w-xl">
+                                  <p className="text-center text-sm sm:text-base font-medium text-gray-500">
+                                    {user.role === "student"
+                                      ? "No materials have been assigned for this course yet.."
+                                      : user.role === "lecturer"
+                                      ? "You haven't added any course materials yet. Please proceed to upload materials."
+                                      : ""}
                                   </p>
-                                )}
-                                {user.role == "lecturer" && (
-                                  <p className="text-center">
-                                    You Have Not added any course materials,
-                                    Proceed to add materials
-                                  </p>
-                                )}
+                                </div>
                               </div>
                             </div>
                           ) : (
-                            <div className="">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-8">
                               {course?.course_files.map((file, index) => (
                                 <div
                                   key={index}
-                                  className="flex justify-between bg-white p-2 rounded-lg mb-2"
+                                  className="flex items-center justify-between bg-white p-2 rounded-lg mb-2 border"
                                 >
-                                  <div className="flex gap-3">
-                                    <div className="">
-                                      <img src={art} alt="" />
-                                    </div>
-                                    <div className="mt-4">
-                                      <h1 className="text-sm font-semibold text-gray-600">
-                                        {file.file_name}
-                                      </h1>
-                                    </div>
+                                  <div className="flex items-center gap-2">
+                                    <img
+                                      className="w-12 h-12 rounded-lg"
+                                      src={art}
+                                      alt=""
+                                    />
+
+                                    <h1 className="text-xs font-semibold text-gray-600">
+                                      {file.file_name}
+                                    </h1>
                                   </div>{" "}
-                                  <div className="mt-4">
-                                    <a
-                                      href={file.file}
-                                      class="bg-[#0E927A] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    >
-                                      Download
-                                    </a>
-                                  </div>
+                                  <Link
+                                    to={file.file}
+                                    className="cursor-pointer flex gap-1 items-center justify-center
+                      px-4 py-2 bg-green-300 text-green-700 border-2 hover:border-green-500 
+                       rounded-lg hover:bg-opacity-70 transition font-semibold shadow-md text-xs"
+                                  > <FaDownload />
+                                    Download
+                                  </Link>
                                 </div>
                               ))}
                             </div>
