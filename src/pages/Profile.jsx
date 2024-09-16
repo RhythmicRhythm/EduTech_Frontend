@@ -234,7 +234,7 @@ const Profile = () => {
                       {activeTab == "materials" && (
                         <div className="px-2 py-4 w-full">
                           <div className="flex justify-end">
-                            {user.role == "student" && (
+                            {user.role == "lecturer" && (
                               <Link
                                 to={`/uploadfile/${course?._id}`}
                                 className="cursor-pointer flex gap-1 items-center
