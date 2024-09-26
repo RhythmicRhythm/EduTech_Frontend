@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/Slices/authSlice";
 import RegisterCourses from "./pages/RegisterCourses";
+import Homepage from "./pages/Homepage";
 
 axios.defaults.withCredentials = true;
 
@@ -66,6 +67,7 @@ function App() {
         }}
       />
       <Routes>
+      <Route exact path="/" element={<Homepage />} />
         {/* AUTH ROUTES */}
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/signin" element={<Signin />} />
