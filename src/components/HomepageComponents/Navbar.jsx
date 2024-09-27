@@ -63,10 +63,10 @@ const Navbar = () => {
               <div className="hidden lg:block ml-auto">
                 <Link
                   className="inline-flex items-center justify-center h-10 px-4 text-center leading-loose
-                   text-sm text-gray-200 font-bold hover:text-gray-800 bg-blue-500 hover:bg-white rounded-lg transition duration-200"
+                   text-sm text-gray-200 font-bold hover:text-gray-800 bg-green-500 hover:bg-green-600 rounded-lg transition duration-200"
                   to="#"
                 >
-                  Connect Wallet
+                  Register
                 </Link>
               </div>
             </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
           }`}
         >
           <div className="fixed inset-0" />
-          <nav className="relative flex flex-col py-6 px-10 w-full h-full bg-black bg-opacity-80 overflow-y-auto">
+          <nav className="relative flex flex-col py-6 px-10 w-full h-full bg-white bg-opacity-80 overflow-y-auto">
             <div className="flex mb-auto items-center">
               <Link className="inline-block mr-auto" to="#">
                 <img className="h-10" src={logo} alt="" />
@@ -91,7 +91,7 @@ const Navbar = () => {
               <ul className="flex-col gap-8">
                 <li className="mb-6">
                   <Link
-                    className="inline-block font-bold text-lg text-white"
+                    className="inline-block font-bold text-lg text-gray-600"
                     to="/"
                   >
                     Home
