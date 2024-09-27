@@ -26,7 +26,6 @@ import Resetpassword from "./pages/auth/Resetpassword";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getLoginStatus } from "./services/authService";
-import { SET_LOGIN } from "./redux/Slices/authSlice";
 import RegisterCourses from "./pages/RegisterCourses";
 import Homepage from "./pages/Homepage";
 
@@ -39,7 +38,7 @@ function App() {
   useEffect(() => {
     async function loginStatus() {
       const status = await getLoginStatus();
-      dispatch(SET_LOGIN(status));
+      
       console.log(status);
     }
     loginStatus();

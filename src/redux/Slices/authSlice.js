@@ -1,46 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
-const name = JSON.parse(localStorage.getItem("name"));
-const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-const initialState = {
-  isLoggedIn: false,
-  isAdmin,
-  name: name ? name : "",
-  user: {
-    fullname: "",
-    email: "",
-  },
-};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
-  reducers: {
-    SET_LOGIN(state, action) {
-      state.isLoggedIn = action.payload;
-    },
-    SET_NAME(state, action) {
-      localStorage.setItem("name", JSON.stringify(action.payload));
-      state.name = action.payload;
-    },
-    SET_USER(state, action) {
-      const profile = action.payload;
-      state.user.fullname = profile.fullname;
-      state.user.email = profile.email;
-    },
+  initialState: {
+    user: null,
+    loading: false,
+    error: null,
   },
-  SET_ADMIN(state, action) {
-    localStorage.setItem("isAdmin", JSON.stringify(action.payload));
-    state.isAdmin = action.payload;
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(signin.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        state.error = null;
+        toast.success(`Welcome Back`);
+      })
+      .addCase(signin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+        toast.error(action.payload.message);
+      });
   },
 });
-
-export const { SET_LOGIN, SET_NAME, SET_USER, SET_ADMIN } = authSlice.actions;
-
-export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
-export const selectName = (state) => state.auth.name;
-export const selectUser = (state) => state.auth.user;
-export const selectIsAdmin = (state) => state.auth.isAdmin;
 
 export default authSlice.reducer;

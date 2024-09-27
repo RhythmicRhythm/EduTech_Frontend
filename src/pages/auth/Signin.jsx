@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import { signinSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_LOGIN, SET_ADMIN } from "../../redux/Slices/authSlice";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
 import Load from "../../images/load.gif";

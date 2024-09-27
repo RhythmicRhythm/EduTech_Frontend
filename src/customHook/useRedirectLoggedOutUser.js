@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SET_LOGIN } from "../redux/Slices/authSlice";
+
 import toast, { Toaster } from "react-hot-toast";
 
 const useRedirectLoggedOutUser = (path) => {

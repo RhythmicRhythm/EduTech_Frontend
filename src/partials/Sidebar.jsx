@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import logo from "../images/Logo.png";
 import { logoutUser } from "../services/authService";
 import { useDispatch } from "react-redux";
-import { SET_LOGIN } from "../redux/Slices/authSlice";
+// import { SET_LOGIN } from "../redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaBookDead } from "react-icons/fa";
@@ -26,7 +26,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const logout = async () => {
     await logoutUser();
-    dispatch(SET_LOGIN(false));
+    // dispatch(SET_LOGIN(false));
     console.log("logged out");
 
     navigate("/signin");

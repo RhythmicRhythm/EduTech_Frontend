@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import { signupSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_LOGIN } from "../../redux/Slices/authSlice";
+
 import { useNavigate } from "react-router-dom";
 import auth1 from "../../images/auth1.png";
 import logo from "../../images/Logo.png";
@@ -11,42 +11,28 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { BACKEND_URL } from "../../services/authService";
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-  console.log(actions);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
+const initialValues = {
+  fullname: "",
+  email: "",
+  password: "",
+  role: "",
 };
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSubmit = async (e) => {
-    const userData = {
-      fullname: values.name,
-      email: values.email,
-      password: values.password,
-      isAdmin: values.role,
-    };
+  // const onSubmit = async (e) => {
+  //   const userData = {
+  //     fullname: values.name,
+  //     email: values.email,
+  //     password: values.password,
+  //     isAdmin: values.role,
+  //   };
 
-    console.log(userData);
+  // console.log(userData);
 
-    setIsLoading(true);
-    axios
-      .post(`${BACKEND_URL}/users/register`, userData)
-      .then(({ data }) => {
-        navigate(`/dashboard/home`);
-        console.log(data);
-        dispatch(SET_LOGIN(true));
-      })
-      .catch(({ response }) => {
-        toast.error(response.data.message);
-        console.log(response.data.message);
-
-        setIsLoading(false);
-      });
-  };
+  // };
 
   const {
     values,
@@ -57,14 +43,26 @@ const Signup = () => {
     handleChange,
     handleSubmit,
   } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      role: "",
-    },
+    initialValues: initialValues,
     validationSchema: signupSchema,
-    onSubmit,
+    onSubmit: (values) => {
+      console.log(values);
+
+      setIsLoading(true);
+      axios
+        .post(`${BACKEND_URL}/users/register`, values)
+        .then(({ data }) => {
+          navigate(`/dashboard/home`);
+          console.log(data);
+          
+        })
+        .catch(({ response }) => {
+          toast.error(response.data.message);
+          console.log(response.data.message);
+
+          setIsLoading(false);
+        });
+    },
   });
   return (
     <>
@@ -97,25 +95,28 @@ const Signup = () => {
                   </label>
                   <input
                     className={`w-full px-8 py-3 rounded-lg mb-2 font-medium bg-[#fff] border-2 ${
-                      errors.name && touched.name
+                      errors.fullname && touched.fullname
                         ? "border-red-300 "
                         : "border-gray-200 "
                     }placeholder-gray-500 text-sm focus:outline-none ${
-                      errors.name && touched.name
+                      errors.fullname && touched.fullname
                         ? "focus:border-red-300 focus:bg-white "
                         : "focus:border-gray-200 focus:bg-white "
                     }`}
-                    value={values.name}
+                    value={values.fullname}
                     onChange={handleChange}
-                    id="name"
-                    type="name"
-                    placeholder="Enter your fullname"
+                    id="fullname"
+                    type="text"
+                    placeholder="Enter your full name"
                     onBlur={handleBlur}
                   />
-                  {errors.name && touched.name && (
-                    <p className="error text-xs text-red-300">{errors.email}</p>
+                  {errors.fullname && touched.fullname && (
+                    <p className="error text-xs text-red-300">
+                      {errors.fullname}
+                    </p>
                   )}
                 </div>
+
                 <div className="mt-4">
                   <label className="text-xs text-gray-500 mb-2">
                     Email Address
