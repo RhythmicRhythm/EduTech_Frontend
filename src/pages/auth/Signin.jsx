@@ -9,41 +9,17 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../../services/authService";
 import axios from "axios";
+import { signin } from "../../redux/Slices/authSlice";
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-  console.log(actions);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
+const initialValues = {
+  email: "",
+  password: "",
 };
 
 const Signin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSubmit = async (e) => {
-    const userData = {
-      email: values.email,
-      password: values.password,
-    };
-
-    console.log(userData);
-
-    setIsLoading(true);
-    axios
-      .post(`${BACKEND_URL}/users/login`, userData)
-      .then(({ data }) => {
-        navigate(`/dashboard/home`);
-        console.log(data);
-        dispatch(SET_LOGIN(true));
-      })
-      .catch(({ response }) => {
-        toast.error(response.data.message);
-        console.log(response.data.message);
-
-        setIsLoading(false);
-      });
-  };
 
   const {
     values,
@@ -54,12 +30,20 @@ const Signin = () => {
     handleChange,
     handleSubmit,
   } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
+    initialValues: initialValues,
     validationSchema: signinSchema,
-    onSubmit,
+    onSubmit: async (values) => {
+      try {
+        const response = await dispatch(signin(values)).unwrap();
+        toast.success("Welcome eweeewewe");
+        console.log(response);
+        // navigate(`/verifyemail/${response.email}`);
+        navigate(`/dashboard/home`);
+      } catch (error) {
+        toast.error(error.message || "Failed to sign up");
+        console.log(error);
+      }
+    },
   });
 
   return (
