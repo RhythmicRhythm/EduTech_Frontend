@@ -10,6 +10,7 @@ import Load from "../../images/load.gif";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { BACKEND_URL } from "../../services/authService";
+import { signup } from "../../redux/Slices/authSlice";
 
 const initialValues = {
   fullname: "",
@@ -22,17 +23,7 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const onSubmit = async (e) => {
-  //   const userData = {
-  //     fullname: values.name,
-  //     email: values.email,
-  //     password: values.password,
-  //     isAdmin: values.role,
-  //   };
-
-  // console.log(userData);
-
-  // };
+  const { loading } = useSelector((state) => state.auth);
 
   const {
     values,
@@ -45,23 +36,17 @@ const Signup = () => {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
-    onSubmit: (values) => {
-      console.log(values);
-
-      setIsLoading(true);
-      axios
-        .post(`${BACKEND_URL}/users/register`, values)
-        .then(({ data }) => {
-          navigate(`/dashboard/home`);
-          console.log(data);
-          
-        })
-        .catch(({ response }) => {
-          toast.error(response.data.message);
-          console.log(response.data.message);
-
-          setIsLoading(false);
-        });
+    onSubmit: async (values) => {
+      try {
+        const response = await dispatch(signup(values)).unwrap();
+        toast.success("Welcome eweeewewe");
+        console.log(response);
+        // navigate(`/verifyemail/${response.email}`);
+         navigate(`/dashboard/home`);
+      } catch (error) {
+        toast.error(error.message || "Failed to sign in");
+        console.log(error);
+      }
     },
   });
   return (
@@ -73,7 +58,7 @@ const Signup = () => {
               <img src={logo} alt="logo" />
             </div>
 
-            {isLoading ? (
+            {loading ? (
               <div className="">
                 <img className="w-[10rem]" src={Load} alt="" />
               </div>
