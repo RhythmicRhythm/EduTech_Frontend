@@ -50,6 +50,7 @@ const authSlice = createSlice({
   name: "tasks",
   initialState: {
     user: null,
+    isAuthenticated: false,
     loading: false,
     error: null,
   },
@@ -63,6 +64,7 @@ const authSlice = createSlice({
       .addCase(signin.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.isAuthenticated = true;
         state.error = null;
         toast.success(`Welcome Back`)
       })
@@ -77,6 +79,7 @@ const authSlice = createSlice({
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.loading = false;
+        state.isAuthenticated = true;
         state.user = action.payload;
         state.error = null;
         // toast.success(`Welcome Back`)

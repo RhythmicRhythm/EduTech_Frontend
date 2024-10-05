@@ -9,17 +9,17 @@ const useRedirectLoggedOutUser = (path) => {
   const dispatch = useDispatch();
 
   // Assuming you have a redux state that stores login status
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const {isAuthenticated} = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Check the value of isLoggedIn directly
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       console.log("Session expired, please login to continue.");
       navigate(path);
     }
-  }, [navigate, path, isLoggedIn]);
+  }, [navigate, path, isAuthenticated]);
 
-  return { isLoggedIn };
+  return { isAuthenticated };
 };
 
 export default useRedirectLoggedOutUser;
