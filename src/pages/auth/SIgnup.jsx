@@ -44,7 +44,7 @@ const Signup = () => {
         // navigate(`/verifyemail/${response.email}`);
          navigate(`/dashboard/home`);
       } catch (error) {
-        toast.error(error.message || "Failed to sign in");
+        toast.error(error.message || "Failed to sign up");
         console.log(error);
       }
     },
