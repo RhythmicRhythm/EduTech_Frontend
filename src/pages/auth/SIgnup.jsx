@@ -20,7 +20,6 @@ const initialValues = {
 };
 
 const Signup = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.auth);
@@ -42,7 +41,7 @@ const Signup = () => {
         toast.success("Welcome eweeewewe");
         console.log(response);
         // navigate(`/verifyemail/${response.email}`);
-         navigate(`/dashboard/home`);
+        navigate(`/dashboard/home`);
       } catch (error) {
         toast.error(error.message || "Failed to sign up");
         console.log(error);
