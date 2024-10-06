@@ -13,7 +13,6 @@ import { TbLogout2 } from "react-icons/tb";
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
   const dispatch = useDispatch();
-  console.log(dispatch); 
   const navigate = useNavigate();
   const { pathname } = location;
 
@@ -26,17 +25,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   );
 
   const logout_user = () => {
-   try {
-    console.log("hello");
-    
-    dispatch(logout())
-     // console.log("S Log");
-     
-    //  navigate("/signin");
-   } catch (error) {
-    console.log(error);
-    
-   }
+    dispatch(logout()).then(() => {
+      navigate("/signin");
+    });
+  
   };
 
   // close on click outside

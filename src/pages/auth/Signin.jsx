@@ -19,9 +19,8 @@ const initialValues = {
 const Signin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
- 
-  
   const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.auth);
 
   const {
     values,
@@ -57,7 +56,7 @@ const Signin = () => {
               <img src={logo} alt="logo" />
             </div>
 
-            {isLoading ? (
+            {loading ? (
               <div className="">
                 <img className="w-[10rem]" src={Load} alt="" />
               </div>
