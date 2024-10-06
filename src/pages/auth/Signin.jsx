@@ -51,8 +51,15 @@ const Signin = () => {
     <>
       <section className="flex min-h-screen">
         <div className="z-0 flex w-full flex-col justify-center  px-0 text-black md:px-16 lg:w-1/2">
+        <div
+            style={{
+              backgroundImage: `url(${auth1})`,
+              backgroundPosition: "center",
+            }}
+            className="w-full h-20 sm:hidden"
+          ></div>
           <div className="min-w-screen flex min-h-screen items-center justify-center px-5 py-5">
-            <div className="absolute top-0 right-0 left-0 p-4 text-center">
+            <div className="absolute top-20 sm:top-0 right-0 left-0 p-4 text-center">
               <img src={logo} alt="logo" />
             </div>
 
