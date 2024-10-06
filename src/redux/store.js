@@ -16,7 +16,7 @@ import authReducer from "./Slices/authSlice";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  // whitelist: ["auth"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
@@ -24,6 +24,8 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    middleware: [thunk],
+
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },

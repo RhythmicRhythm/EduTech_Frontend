@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import logo from "../images/Logo.png";
-import { logoutUser } from "../services/authService";
+import { logout } from "../redux/Slices/authSlice";
 import { useDispatch } from "react-redux";
 // import { SET_LOGIN } from "../redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { TbLogout2 } from "react-icons/tb";
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
   const dispatch = useDispatch();
+  console.log(dispatch); 
   const navigate = useNavigate();
   const { pathname } = location;
 
@@ -24,12 +25,18 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
 
-  const logout = async () => {
-    await logoutUser();
-    // dispatch(SET_LOGIN(false));
-    console.log("logged out");
-
-    navigate("/signin");
+  const logout_user = () => {
+   try {
+    console.log("hello");
+    
+    dispatch(logout())
+     // console.log("S Log");
+     
+    //  navigate("/signin");
+   } catch (error) {
+    console.log(error);
+    
+   }
   };
 
   // close on click outside
@@ -186,7 +193,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   }`}
                 >
                   <div
-                    onClick={logout}
+                    onClick={logout_user}
                     className="flex items-center cursor-pointer justify-between"
                   >
                     <div className="grow flex items-center">
