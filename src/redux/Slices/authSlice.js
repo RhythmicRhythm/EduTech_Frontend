@@ -95,7 +95,7 @@ const authSlice = createSlice({
       })
       //logout
       .addCase(logout.pending, (state) => {
-        state.status = "loading";
+        state.loading = true;
       })
       .addCase(logout.fulfilled, (state) => {
         toast.success(`Sucessfully Logged Out`);
